@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact - My Personal Website</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: olive;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px; 
+            display: inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7); 
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navbar .logo {
+            float: left; 
+            margin-left: 20px; 
+            padding-right: 20px;
+            border-right: 2px solid white; 
+        }
+
+        .nav-list {
+            list-style-type: none; 
+            padding: 0;
+            margin: 0;
+            float: right; 
+            margin-right: 20px; 
+        }
+
+        .nav-list li {
+            display: inline-block;
+        }
+
+        input, textarea {
+            background-color: #fafafa;
+            border: 1px solid #ccc;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 50px;
+            border: 1px solid black; 
+        }
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <nav class="navbar">
+            <h1 class="logo">Emanuel's website</h1>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div style="clear:both;"></div> 
+        <h1 class="page-title">Contact</h1>
+        <img src="mountain.jpg" alt="Not showing" width="400" height="300">
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+    <footer>
+        © 2023 Emanuel's website | All Rights Reserved
+    </footer>
+</body>
+
+</html>

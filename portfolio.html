@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Portfolio - My Personal Website</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: olive;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px; 
+            display: inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navbar .logo {
+            float: left;
+            margin-left: 20px;
+            padding-right: 20px;
+            border-right: 2px solid white; 
+        }
+
+        .nav-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            float: right;
+            margin-right: 20px;
+        }
+
+        .nav-list li {
+            display: inline-block;
+        }
+
+        .project-details {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 50px;
+            border: 1px solid black; 
+        }
+
+        .screenshot-container {
+            display: inline-block;
+            background: repeating-radial-gradient(circle at center, white 0px, white 5px, transparent 5px, transparent 10px);
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <nav class="navbar">
+            <h1 class="logo">
+              <a href="index.html">Emanuel's website</a>
+            </h1>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div style="clear:both;"></div> 
+        <h1 class="page-title">Portfolio</h1>
+        <div class="screenshot-container">
+            <img src="Screen Shot 2023-10-07 at 10.20.55 PM.png" alt="Not showing" width="400" height="300">
+        </div>
+        <div class="project-details">
+            <p class="project-name">Project Name</p>
+            <p class="project-description">Project Description goes here.</p>
+            <a href="index.html">Learn More</a>
+        </div>
+    </main>
+    <footer>
+        © 2023 Emanuel's website | All Rights Reserved
+    </footer>
+</body>
+
+</html>
