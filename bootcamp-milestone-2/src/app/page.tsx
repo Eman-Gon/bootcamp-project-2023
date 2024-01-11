@@ -1,3 +1,4 @@
+import BlogPreview from '@/components/blogPreview';
 export default function Home() {
     return (
         <main>
@@ -16,6 +17,14 @@ export default function Home() {
             <div style={{ clear: 'both' }}></div>
             <h1 className="page-title">Resume</h1>
             <img src="mountain.jpg" alt="Mountain" width="400" height="300" />
+
+//import BlogPreview from '@/components/blogPreview';
+...
+    // somewhere in the return statement
+    {/* {blogs.map(blog =>  */}
+      {/* <BlogPreview /> // This is how we call the component */}
+		{/* )} */}
+
 
             {/* Repeat sections for Education, Experience, Skills, Projects */}
 
