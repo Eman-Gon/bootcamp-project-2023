@@ -6,22 +6,20 @@ import Navbar from "@/components/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  
   title: "Emanuel's website ",
   description: "A personal website for Emanuel.",
 };
 export default function RootLayout({
-  
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}> //remember Inter is simply the font I chose.
-        <Navbar/>
+      <body className={inter.className}>
+        <Navbar />
         {children}
-        </body>
+      </body>
     </html>
   );
 }

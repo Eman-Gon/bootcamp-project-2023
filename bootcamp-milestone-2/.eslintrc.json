@@ -1,11 +1,11 @@
-export interface Blog {
-	...
-}
+// export interface Blog {
+// 	...
+// }
 
-const blogs: Blog[] = [
-	{blogObject},
-	{blogObject},
-	{blogObject} 
-];
+// const blogs: Blog[] = [
+// 	{blogObject},
+// 	{blogObject},
+// 	{blogObject} 
+// ];
 
-export default blogs; // This will allow us to access this data anywhere!
+// export default blogs; // This will allow us to access this data anywhere!

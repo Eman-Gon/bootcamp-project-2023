@@ -1,16 +1,26 @@
-import React from 'react';
-import style from './blogPreview.module.css'
+import React from "react";
+import style from "./blogPreview.module.css";
+import Image from "next/image";
+import { Blog } from "../app/blogData"; // Adjust the path to match your project structure
 
-export default function BlogPreview() {
+const BlogPreview: React.FC<Blog> = ({ title, description, date }) => {
   return (
-		// replace everything between the <div> & </div> tags
-		// with your code from earlier milestones
-    <div className={style.div}>
-      <h3> Blog Name </h3>
+    <div className={style.blogpost}>
       <div>
-        <p>Blog description</p>
-				<p>Posted on...</p>
+        <h3 className={style.blogTitle}>{title}</h3>
+        <p className={style.blogText}>{description}</p>
+        <p className={style.previewDate}>{date}</p>
+        {/* Use a standard anchor tag for external navigation */}
+        <a
+          href="https://en.wikipedia.org/wiki/Elon_Musk"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read More
+        </a>
       </div>
-	  </div>
+    </div>
   );
-}
+};
+
+export default BlogPreview;
