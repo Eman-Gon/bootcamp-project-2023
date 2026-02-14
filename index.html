@@ -207,85 +207,6 @@
         color: #cbd5e1;
       }
 
-      /* Email form */
-      .email-form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .email-form input,
-      .email-form textarea {
-        padding: 0.75rem 1rem;
-        border: 1px solid #334155;
-        border-radius: 6px;
-        background-color: #1e293b;
-        color: #e2e8f0;
-        font-family: inherit;
-        font-size: 0.9rem;
-        transition: border-color 0.2s;
-      }
-
-      .email-form input:focus,
-      .email-form textarea:focus {
-        outline: none;
-        border-color: #60a5fa;
-      }
-
-      .email-form input::placeholder,
-      .email-form textarea::placeholder {
-        color: #475569;
-      }
-
-      .email-form textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-
-      .email-form button {
-        padding: 0.75rem 1.5rem;
-        background-color: #2563eb;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        font-family: inherit;
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        align-self: flex-start;
-        transition: background-color 0.2s;
-      }
-
-      .email-form button:hover {
-        background-color: #1d4ed8;
-      }
-
-      .email-form button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      #email-status {
-        padding: 0.75rem 1rem;
-        border-radius: 6px;
-        font-size: 0.9rem;
-        display: none;
-      }
-
-      #email-status.success {
-        display: block;
-        background-color: rgba(34, 197, 94, 0.15);
-        border: 1px solid #22c55e;
-        color: #4ade80;
-      }
-
-      #email-status.error {
-        display: block;
-        background-color: rgba(239, 68, 68, 0.15);
-        border: 1px solid #ef4444;
-        color: #f87171;
-      }
-
       /* Footer */
       footer {
         text-align: center;
@@ -333,7 +254,6 @@
         <li><a href="blog.html">Blog</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="resume.html">Resume</a></li>
-        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
 
@@ -463,75 +383,11 @@
         </div>
       </section>
 
-      <section class="section">
-        <h2>Get in Touch</h2>
-        <p style="color: #94a3b8; margin-bottom: 1rem;">
-          Interested in working together? Send me a message.
-        </p>
-        <form id="email-form" class="email-form">
-          <input type="text" id="from_name" name="from_name" placeholder="Your Name" required />
-          <input type="email" id="from_email" name="from_email" placeholder="Your Email" required />
-          <input type="text" id="subject" name="subject" placeholder="Subject" required />
-          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-          <button type="submit" id="send-btn">Send Message</button>
-        </form>
-        <div id="email-status"></div>
-      </section>
     </main>
 
     <footer>
       &copy; 2026 Emanuel Gonzalez
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-      // ======================================================
-      // SETUP: Replace these with your EmailJS credentials
-      // https://www.emailjs.com
-      // ======================================================
-      const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-      const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-      const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-
-      document
-        .getElementById("email-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          var btn = document.getElementById("send-btn");
-          var status = document.getElementById("email-status");
-          btn.disabled = true;
-          btn.textContent = "Sending...";
-          status.style.display = "none";
-          status.className = "";
-
-          var templateParams = {
-            from_name: document.getElementById("from_name").value,
-            from_email: document.getElementById("from_email").value,
-            subject: document.getElementById("subject").value,
-            message: document.getElementById("message").value,
-          };
-
-          emailjs
-            .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-            .then(function () {
-              status.textContent = "Message sent successfully!";
-              status.className = "success";
-              btn.textContent = "Send Message";
-              btn.disabled = false;
-              document.getElementById("email-form").reset();
-            })
-            .catch(function (error) {
-              status.textContent =
-                "Failed to send message. Please try again.";
-              status.className = "error";
-              btn.textContent = "Send Message";
-              btn.disabled = false;
-              console.error("EmailJS error:", error);
-            });
-        });
-    </script>
   </body>
 </html>
