@@ -1,173 +1,537 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>My Personal Website</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emanuel Gonzalez — AI & Software Engineer</title>
     <style>
-      body {
-        font-family: "Courier New", monospace;
-        background-color: olive;
-        color: white;
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
+
+      body {
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        background-color: #0f172a;
+        color: #e2e8f0;
+        line-height: 1.6;
+      }
+
       a {
-        color: white;
+        color: #60a5fa;
         text-decoration: none;
-        padding: 10px 20px;
-        display: inline-block;
+        transition: color 0.2s;
       }
+
       a:hover {
-        text-decoration: underline;
+        color: #93c5fd;
       }
+
+      /* Navbar */
       .navbar {
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 10px 0;
+        background-color: rgba(15, 23, 42, 0.95);
+        border-bottom: 1px solid #1e293b;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(8px);
+      }
+
+      .navbar .logo a {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #f8fafc;
+        padding: 1rem 0;
+        display: block;
+      }
+
+      .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .nav-list a {
+        color: #94a3b8;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        transition: color 0.2s, background-color 0.2s;
+        display: block;
+      }
+
+      .nav-list a:hover,
+      .nav-list a.active {
+        color: #f8fafc;
+        background-color: #1e293b;
+      }
+
+      /* Hero / About */
+      .hero {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 4rem 2rem 2rem;
         text-align: center;
       }
-      .navbar .logo {
-        float: left;
-        margin-left: 20px;
-        padding-right: 20px;
-        border-right: 2px solid white;
+
+      .hero h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
       }
-      .nav-list {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        float: right;
-        margin-right: 20px;
+
+      .hero .tagline {
+        font-size: 1.15rem;
+        color: #94a3b8;
+        margin-bottom: 1.5rem;
       }
-      .nav-list li {
-        display: inline-block;
+
+      .hero .bio {
+        font-size: 1rem;
+        color: #cbd5e1;
+        max-width: 650px;
+        margin: 0 auto 1.5rem;
       }
-      .about {
-        padding: 20px;
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
       }
+
+      .contact-links a {
+        color: #60a5fa;
+      }
+
+      .contact-links span {
+        color: #94a3b8;
+      }
+
+      /* Content */
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 2rem 3rem;
+      }
+
       .section {
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 15px;
-        border-radius: 5px;
-        margin: 20px;
+        margin-bottom: 2.5rem;
       }
+
       .section h2 {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        padding-bottom: 8px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #1e293b;
       }
-      .section ul {
-        list-style-type: square;
-        padding-left: 20px;
+
+      /* Cards for experience & projects */
+      .card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        transition: border-color 0.2s;
       }
-      .section li {
-        margin-bottom: 8px;
+
+      .card:hover {
+        border-color: #475569;
       }
+
+      .card h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #f8fafc;
+        margin-bottom: 0.25rem;
+      }
+
+      .card .meta {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 0.5rem;
+      }
+
+      .card p {
+        font-size: 0.9rem;
+        color: #cbd5e1;
+      }
+
+      .badge {
+        display: inline-block;
+        background-color: rgba(96, 165, 250, 0.15);
+        color: #60a5fa;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+
+      /* Skills */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .skill-category {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      .skill-category h3 {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #60a5fa;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .skill-category p {
+        font-size: 0.9rem;
+        color: #cbd5e1;
+      }
+
+      /* Email form */
+      .email-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .email-form input,
+      .email-form textarea {
+        padding: 0.75rem 1rem;
+        border: 1px solid #334155;
+        border-radius: 6px;
+        background-color: #1e293b;
+        color: #e2e8f0;
+        font-family: inherit;
+        font-size: 0.9rem;
+        transition: border-color 0.2s;
+      }
+
+      .email-form input:focus,
+      .email-form textarea:focus {
+        outline: none;
+        border-color: #60a5fa;
+      }
+
+      .email-form input::placeholder,
+      .email-form textarea::placeholder {
+        color: #475569;
+      }
+
+      .email-form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .email-form button {
+        padding: 0.75rem 1.5rem;
+        background-color: #2563eb;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        align-self: flex-start;
+        transition: background-color 0.2s;
+      }
+
+      .email-form button:hover {
+        background-color: #1d4ed8;
+      }
+
+      .email-form button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      #email-status {
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        display: none;
+      }
+
+      #email-status.success {
+        display: block;
+        background-color: rgba(34, 197, 94, 0.15);
+        border: 1px solid #22c55e;
+        color: #4ade80;
+      }
+
+      #email-status.error {
+        display: block;
+        background-color: rgba(239, 68, 68, 0.15);
+        border: 1px solid #ef4444;
+        color: #f87171;
+      }
+
+      /* Footer */
       footer {
         text-align: center;
-        padding: 20px 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        margin-top: 50px;
-        border: 1px solid black;
+        padding: 2rem;
+        border-top: 1px solid #1e293b;
+        color: #475569;
+        font-size: 0.85rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .navbar {
+          flex-direction: column;
+          padding: 0.75rem 1rem;
+          gap: 0.5rem;
+        }
+
+        .nav-list {
+          gap: 0;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-links {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <nav class="navbar">
-        <h1 class="logo">
-          <a href="index.html">Emanuel's website</a>
-        </h1>
-        <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div style="clear: both"></div>
-      <div class="about">
-        <div class="about-image">
-          <img src="mountain.jpg" alt="Not showing" width="400" height="300" />
-        </div>
-        <div class="about-text">
-          <p><em>Hello World!</em> This is my website.</p>
-          <p>
-            <strong
-              >Hello, I'm Emanuel Gonzalez, a Computer Science student at
-              California Polytechnic State University, San Luis Obispo. I
-              specialize in Artificial Intelligence and Machine Learning, with
-              coursework in Advanced ML, Deep Learning, and Mobile Autonomous
-              Robotics. I'm passionate about building AI-powered systems and
-              have won multiple hackathons.</strong
-            >
-          </p>
-          <p>
-            415-400-6707 |
-            <a href="mailto:emanpiece@gmail.com">emanpiece@gmail.com</a> |
-            <a href="https://linkedin.com/in/eman279">LinkedIn</a> |
-            <a href="https://github.com/Eman-Gon">GitHub</a>
-          </p>
-        </div>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">Emanuel Gonzalez</a>
       </div>
+      <ul class="nav-list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
 
+    <header class="hero">
+      <h1>Emanuel Gonzalez</h1>
+      <p class="tagline">AI & Software Engineer | Cal Poly SLO '25</p>
+      <p class="bio">
+        Computer Science student at Cal Poly San Luis Obispo specializing in
+        AI and Machine Learning. I build AI-powered systems, from multi-agent
+        platforms to real-time voice assistants, and have placed in multiple
+        competitive hackathons.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:emanpiece@gmail.com">emanpiece@gmail.com</a>
+        <span>|</span>
+        <a href="https://linkedin.com/in/eman279" target="_blank" rel="noopener">LinkedIn</a>
+        <span>|</span>
+        <a href="https://github.com/Eman-Gon" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </header>
+
+    <main class="container">
       <section class="section">
         <h2>Education</h2>
-        <ul>
-          <li>
-            <strong>California Polytechnic State University, San Luis Obispo, CA</strong><br />
-            Bachelor of Science in Computer Science (Sep. 2023 - Dec. 2025)<br />
-            Coursework: Advanced Machine Learning, Artificial Intelligence, Deep Learning, Mobile Autonomous Robotics, Knowledge Discovery of Data, Security
-          </li>
-        </ul>
+        <div class="card">
+          <h3>California Polytechnic State University, San Luis Obispo</h3>
+          <p class="meta">B.S. Computer Science | Sep. 2023 &ndash; Dec. 2025</p>
+          <p>
+            Coursework: Advanced Machine Learning, Artificial Intelligence,
+            Deep Learning, Mobile Autonomous Robotics, Knowledge Discovery of
+            Data, Security
+          </p>
+        </div>
       </section>
 
       <section class="section">
         <h2>Experience</h2>
-        <ul>
-          <li>
-            <strong>AI Engineering Fellow</strong> — Cal Poly Digital Transformation Hub (DxHub) (Jul. 2025)<br />
-            Selected for intensive AI program across 23 CSU campuses; built invoice automation using FastAPI, React, and AWS Bedrock (Claude 3.5 Sonnet), reducing processing time by 99% with 95%+ accuracy. Deployed multi-tenant architecture on AWS with Amazon Titan embeddings for semantic search.
-          </li>
-          <li>
-            <strong>Software Developer</strong> — Hack4Impact, Creek Lands Conservation (Feb. 2024 - May 2025)<br />
-            Built full-stack event management system handling 100+ registrations with MongoDB; integrated Stripe webhooks for automated payments and role-based auth with Clerk. Developed bilingual PDF waiver workflow generating 200+ documents stored in AWS S3; reduced page load times by 40%.
-          </li>
-        </ul>
+        <div class="card">
+          <h3>AI Engineering Fellow<span class="badge">Selective Program</span></h3>
+          <p class="meta">Cal Poly Digital Transformation Hub (DxHub) | Jul. 2025</p>
+          <p>
+            Selected for intensive AI program with students from 23 CSU
+            campuses. Built invoice automation using FastAPI, React, and AWS
+            Bedrock (Claude 3.5 Sonnet) with prompt engineering, reducing
+            processing time by 99% with 95%+ accuracy. Deployed multi-tenant
+            architecture on AWS with Amazon Titan embeddings for semantic search.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Software Developer</h3>
+          <p class="meta">Hack4Impact &mdash; Creek Lands Conservation | Feb. 2024 &ndash; May 2025</p>
+          <p>
+            Built full-stack event management system handling 100+ registrations
+            with MongoDB. Integrated Stripe webhooks for automated payments and
+            role-based auth with Clerk. Developed bilingual PDF waiver workflow
+            generating 200+ documents stored in AWS S3; reduced page load times
+            by 40%.
+          </p>
+        </div>
       </section>
 
       <section class="section">
         <h2>Projects</h2>
-        <ul>
-          <li>
-            <strong>DepScope — Dependency Risk Analysis Platform</strong> (1st Place, Continual Learning Hackathon)<br />
-            Built multi-agent system with 3 parallel agents evaluating open-source dependencies for security vulnerabilities, maintenance health, and bus factor. Implemented real-time SSE streaming and Plivo voice alerts.
-          </li>
-          <li>
-            <strong>CareLink — AI Voice Assistant for Nursing Homes</strong> (2nd Place, Vapi AI Hackathon, 600+ participants)<br />
-            Built 24/7 AI assistant for families to call for patient updates; integrated Vapi AI voice pipeline with real-time transcription and automatic nurse escalation routing.
-          </li>
-          <li>
-            <strong>SkepticScript — Real-Time Fact-Checking System</strong> (2nd Place, Claude Code Hack Day at AWS)<br />
-            Built real-time fact-checker verifying spoken claims in under 3 seconds with source attribution. Integrated ElevenLabs Scribe and Gemini 2.0 Flash with Google Search grounding.
-          </li>
-          <li>
-            <strong>AI Compute Reallocator — Multi-Objective RL Agent</strong> (MARA Hackathon)<br />
-            Built multi-objective DQN in PyTorch reallocating 1 MW between Bitcoin mining and AI inference; achieved +$26k profit (18%), +25% efficiency, and 70% reduction in idle compute.
-          </li>
-        </ul>
+        <div class="card">
+          <h3>DepScope &mdash; Dependency Risk Analysis Platform<span class="badge">1st Place</span></h3>
+          <p class="meta">Continual Learning Hackathon | Feb. 2025</p>
+          <p>
+            Multi-agent system with 3 parallel agents evaluating open-source
+            dependencies for security vulnerabilities, maintenance health, and
+            bus factor. Orchestrated via Composio with real-time SSE streaming
+            and Plivo voice alerts for critical findings.
+          </p>
+        </div>
+        <div class="card">
+          <h3>CareLink &mdash; AI Voice Assistant for Nursing Homes<span class="badge">2nd Place</span></h3>
+          <p class="meta">Vapi AI x Lovable x Hathora Hackathon (600+ participants) | Feb. 2025</p>
+          <p>
+            24/7 AI assistant enabling families to call for patient updates.
+            Integrated Vapi AI voice pipeline with real-time transcription, LLM
+            response generation, and automatic nurse escalation routing with
+            Supabase backend.
+          </p>
+        </div>
+        <div class="card">
+          <h3>SkepticScript &mdash; Real-Time Fact-Checking System<span class="badge">2nd Place</span></h3>
+          <p class="meta">Claude Code Hack Day at AWS Builder Loft (25 teams) | Feb. 2025</p>
+          <p>
+            Real-time fact-checker verifying spoken claims in under 3 seconds
+            with source attribution. Integrated ElevenLabs Scribe for
+            speech-to-text and Gemini 2.0 Flash with Google Search grounding.
+            WebSocket orchestrator syncing transcription, claim extraction, and
+            verification across microservices.
+          </p>
+        </div>
+        <div class="card">
+          <h3>AI Compute Reallocator &mdash; Multi-Objective RL Agent</h3>
+          <p class="meta">MARA Hackathon | Jun. 2025</p>
+          <p>
+            Multi-objective DQN in PyTorch reallocating 1 MW between Bitcoin
+            mining and AI inference using live ERCOT prices. Achieved +$26k
+            profit (18%), +25% efficiency, and 70% reduction in idle compute.
+            Led 3-person team through implementation and live demo to industry
+            judges.
+          </p>
+        </div>
       </section>
 
       <section class="section">
         <h2>Skills</h2>
-        <ul>
-          <li><strong>Programming:</strong> Python, JavaScript/TypeScript, C, C++, Java, SQL, HTML/CSS</li>
-          <li><strong>AI & Data:</strong> PyTorch, TensorFlow, Reinforcement Learning, LLM APIs, Prompt Engineering, RAG Pipelines, Agentic Workflows, Scikit-learn, NumPy, Pandas</li>
-          <li><strong>Web & Cloud:</strong> React, Next.js, FastAPI, Flask, Node.js, MongoDB, PostgreSQL, Supabase, AWS, Azure</li>
-          <li><strong>Tools:</strong> Docker, Git, GitHub Actions (CI/CD), Linux, Bash, REST APIs, WebSockets, Stripe</li>
-        </ul>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Programming</h3>
+            <p>Python, JavaScript/TypeScript, C, C++, Java, SQL, HTML/CSS</p>
+          </div>
+          <div class="skill-category">
+            <h3>AI & Data</h3>
+            <p>PyTorch, TensorFlow, Reinforcement Learning, LLM APIs, Prompt Engineering, RAG Pipelines, Agentic Workflows, Scikit-learn</p>
+          </div>
+          <div class="skill-category">
+            <h3>Web & Cloud</h3>
+            <p>React, Next.js, FastAPI, Flask, Node.js, MongoDB, PostgreSQL, Supabase, AWS, Azure</p>
+          </div>
+          <div class="skill-category">
+            <h3>Tools</h3>
+            <p>Docker, Git, GitHub Actions, Linux, Bash, REST APIs, WebSockets, Stripe</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Get in Touch</h2>
+        <p style="color: #94a3b8; margin-bottom: 1rem;">
+          Interested in working together? Send me a message.
+        </p>
+        <form id="email-form" class="email-form">
+          <input type="text" id="from_name" name="from_name" placeholder="Your Name" required />
+          <input type="email" id="from_email" name="from_email" placeholder="Your Email" required />
+          <input type="text" id="subject" name="subject" placeholder="Subject" required />
+          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+          <button type="submit" id="send-btn">Send Message</button>
+        </form>
+        <div id="email-status"></div>
       </section>
     </main>
-    <footer class="footer">
-      © 2023 Emanuel's website | All Rights Reserved
+
+    <footer>
+      &copy; 2025 Emanuel Gonzalez
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      // ======================================================
+      // SETUP: Replace these with your EmailJS credentials
+      // https://www.emailjs.com
+      // ======================================================
+      const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+      const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+      const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+
+      document
+        .getElementById("email-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var btn = document.getElementById("send-btn");
+          var status = document.getElementById("email-status");
+          btn.disabled = true;
+          btn.textContent = "Sending...";
+          status.style.display = "none";
+          status.className = "";
+
+          var templateParams = {
+            from_name: document.getElementById("from_name").value,
+            from_email: document.getElementById("from_email").value,
+            subject: document.getElementById("subject").value,
+            message: document.getElementById("message").value,
+          };
+
+          emailjs
+            .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+            .then(function () {
+              status.textContent = "Message sent successfully!";
+              status.className = "success";
+              btn.textContent = "Send Message";
+              btn.disabled = false;
+              document.getElementById("email-form").reset();
+            })
+            .catch(function (error) {
+              status.textContent =
+                "Failed to send message. Please try again.";
+              status.className = "error";
+              btn.textContent = "Send Message";
+              btn.disabled = false;
+              console.error("EmailJS error:", error);
+            });
+        });
+    </script>
   </body>
 </html>
