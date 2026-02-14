@@ -1,0 +1,22 @@
+/* globals.css */
+
+body {
+  font-family: "Courier New", monospace;
+  background-color: olive;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ... other global styles ... */

@@ -1,0 +1,26 @@
+/* blogPreview.module.css */
+
+.blogpost {
+  background-color: rgba(255, 255, 255, 0.1); /* Example style */
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  color: white; /* Assuming a dark theme as per your global styles */
+}
+
+.blogTitle {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.blogText {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.previewDate {
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+
+/* Add other styles specific to your blog preview here */

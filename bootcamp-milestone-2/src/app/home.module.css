@@ -1,0 +1,37 @@
+/* home.module.css */
+.home {
+  /* Styles for the home container */
+}
+
+.logo {
+  float: left;
+  margin-left: 20px;
+  padding-right: 20px;
+  border-right: 2px solid white;
+}
+
+.about {
+  padding: 20px;
+}
+
+.aboutImage {
+  /* Styles for the image container if needed */
+}
+
+.aboutText {
+  /* Styles for the text container if needed */
+}
+
+.clearBoth {
+  clear: both;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: 50px;
+  border: 1px solid black;
+}
+
+/* Add other styles as needed */
