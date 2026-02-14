@@ -1,150 +1,344 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Resume - My Personal Website</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume — Emanuel Gonzalez</title>
     <style>
-      body {
-        font-family: "Courier New", monospace;
-        background-color: olive;
-        color: white;
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        background-color: #0f172a;
+        color: #e2e8f0;
+        line-height: 1.6;
       }
 
       a {
-        color: white;
+        color: #60a5fa;
         text-decoration: none;
-        padding: 10px 20px;
-        display: inline-block;
+        transition: color 0.2s;
       }
 
       a:hover {
-        text-decoration: underline;
+        color: #93c5fd;
       }
 
       .navbar {
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 10px 0;
-        text-align: center;
+        background-color: rgba(15, 23, 42, 0.95);
+        border-bottom: 1px solid #1e293b;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(8px);
       }
 
-      .navbar .logo {
-        float: left;
-        margin-left: 20px;
-        padding-right: 20px;
-        border-right: 2px solid white;
+      .navbar .logo a {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #f8fafc;
+        padding: 1rem 0;
+        display: block;
       }
 
       .nav-list {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        float: right;
-        margin-right: 20px;
+        list-style: none;
+        display: flex;
+        gap: 0.25rem;
       }
 
-      .nav-list li {
-        display: inline-block;
+      .nav-list a {
+        color: #94a3b8;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        transition: color 0.2s, background-color 0.2s;
+        display: block;
+      }
+
+      .nav-list a:hover,
+      .nav-list a.active {
+        color: #f8fafc;
+        background-color: #1e293b;
+      }
+
+      .page-header {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem 1rem;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+      }
+
+      .page-header p {
+        color: #94a3b8;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1rem 2rem 3rem;
       }
 
       .section {
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 15px;
-        border-radius: 5px;
-        margin: 20px 0;
+        margin-bottom: 2.5rem;
+      }
+
+      .section h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #1e293b;
+      }
+
+      .card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        transition: border-color 0.2s;
+      }
+
+      .card:hover {
+        border-color: #475569;
+      }
+
+      .card h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #f8fafc;
+        margin-bottom: 0.25rem;
+      }
+
+      .card .meta {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 0.5rem;
+      }
+
+      .card p,
+      .card li {
+        font-size: 0.9rem;
+        color: #cbd5e1;
+      }
+
+      .card ul {
+        list-style: disc;
+        padding-left: 1.25rem;
+        margin-top: 0.5rem;
+      }
+
+      .card li {
+        margin-bottom: 0.35rem;
+      }
+
+      .badge {
+        display: inline-block;
+        background-color: rgba(96, 165, 250, 0.15);
+        color: #60a5fa;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .skill-category {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      .skill-category h3 {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #60a5fa;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .skill-category p {
+        font-size: 0.9rem;
+        color: #cbd5e1;
       }
 
       footer {
         text-align: center;
-        padding: 20px 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        margin-top: 50px;
-        border: 1px solid black;
+        padding: 2rem;
+        border-top: 1px solid #1e293b;
+        color: #475569;
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 640px) {
+        .navbar {
+          flex-direction: column;
+          padding: 0.75rem 1rem;
+          gap: 0.5rem;
+        }
+
+        .nav-list {
+          gap: 0;
+        }
+
+        .page-header h1 {
+          font-size: 1.6rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
-
   <body>
-    <main>
-      <nav class="navbar">
-        <h1 class="logo">
-          <a href="index.html">Emanuel's website</a>
-        </h1>
-        <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div style="clear: both"></div>
-      <h1 class="page-title">Resume</h1>
-      <img src="mountain.jpg" alt="Not showing" width="400" height="300" />
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">Emanuel Gonzalez</a>
+      </div>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html" class="active">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
 
+    <div class="page-header">
+      <h1>Resume</h1>
+      <p>
+        <a href="mailto:emanpiece@gmail.com">emanpiece@gmail.com</a> &nbsp;|&nbsp;
+        <a href="https://linkedin.com/in/eman279" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp;
+        <a href="https://github.com/Eman-Gon" target="_blank" rel="noopener">GitHub</a>
+      </p>
+    </div>
+
+    <main class="container">
       <section class="section">
-        <h2 class="section-title">Education</h2>
-        <p>
-          Skyline College, San Bruno, CA<br />
-          January 2022 - July 2023<br />
-          Bachelor of Science in Computer Science (In Progress)<br />
-          GPA: 3.74
-        </p>
-        <p>
-          California Polytechnic State University, San Luis Obispo, CA<br />
-          September 2023 - 2025<br />
-          Bachelor of Science in Computer Science (In Progress)
-        </p>
+        <h2>Education</h2>
+        <div class="card">
+          <h3>California Polytechnic State University, San Luis Obispo</h3>
+          <p class="meta">B.S. Computer Science | Sep. 2023 &ndash; Dec. 2025</p>
+          <p>
+            Coursework: Advanced Machine Learning, Artificial Intelligence,
+            Deep Learning, Mobile Autonomous Robotics, Knowledge Discovery of
+            Data, Security
+          </p>
+        </div>
       </section>
 
       <section class="section">
-        <h2 class="section-title">Experience</h2>
-        <p>
-          VR Learning Systems Analyst, (MESA) at Skyline College<br />
-          June 2023 - September 2023<br />
-          Conduct research to identify the most suitable and beneficial Virtual
-          Reality systems for use within educational purposes.
-        </p>
-        <p>
-          Enterprise for youth, Youth council<br />
-          November 2019 - July 2020<br />
-          Team collaboration
-        </p>
-        <p>
-          Student Government: Associated Students of Skyline College (ASSC)<br />
-          November 2022 - Present<br />
-          Organized events
-        </p>
+        <h2>Experience</h2>
+        <div class="card">
+          <h3>AI Engineering Fellow<span class="badge">Selective Program</span></h3>
+          <p class="meta">Cal Poly Digital Transformation Hub (DxHub) | Jul. 2025 | San Luis Obispo, CA</p>
+          <ul>
+            <li>Selected for intensive AI program with students from 23 CSU campuses; built invoice automation using FastAPI, React, and AWS Bedrock (Claude 3.5 Sonnet) with prompt engineering, reducing processing time by 99% with 95%+ accuracy.</li>
+            <li>Deployed multi-tenant architecture on AWS Elastic Beanstalk with S3 storage, Amazon Titan embeddings for semantic search, and real-time chat interface.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Software Developer</h3>
+          <p class="meta">Hack4Impact &mdash; Creek Lands Conservation | Feb. 2024 &ndash; May 2025 | San Luis Obispo, CA</p>
+          <ul>
+            <li>Built full-stack event management system handling 100+ registrations with MongoDB; integrated Stripe webhooks for automated payments and role-based auth with Clerk.</li>
+            <li>Developed bilingual PDF waiver workflow with dynamic signature injection, generating 200+ documents stored in AWS S3; reduced page load times by 40%.</li>
+          </ul>
+        </div>
       </section>
 
       <section class="section">
-        <h2 class="section-title">Skills</h2>
-        <p>Fluent in English and Spanish</p>
-        <p>Proficient in Java, Proficient in Python, Proficient in C++</p>
-        <p>Microsoft Word, Excel</p>
+        <h2>Projects</h2>
+        <div class="card">
+          <h3>DepScope &mdash; Dependency Risk Analysis Platform<span class="badge">1st Place</span></h3>
+          <p class="meta">Continual Learning Hackathon | Feb. 2025 | San Francisco, CA</p>
+          <ul>
+            <li>Built multi-agent system with 3 parallel agents evaluating open-source dependencies for security vulnerabilities, maintenance health, and bus factor before installation.</li>
+            <li>Orchestrated parallel agent execution via Composio, synthesizing GitHub metrics, CVE research, and community sentiment into risk scores.</li>
+            <li>Implemented real-time SSE streaming to dashboard and Plivo voice alerts for critical findings.</li>
+            <li>Designed fallback architecture with caching and model rotation to ensure 100% demo reliability across 5 external APIs.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>CareLink &mdash; AI Voice Assistant for Nursing Homes<span class="badge">2nd Place</span></h3>
+          <p class="meta">Vapi AI x Lovable x Hathora Hackathon (600+ participants) | Feb. 2025 | San Francisco, CA</p>
+          <ul>
+            <li>Built 24/7 AI assistant enabling families to call for patient updates; integrated Vapi AI voice pipeline with real-time transcription, LLM response generation, and speech synthesis with automatic nurse escalation routing.</li>
+            <li>Developed nurse dashboard with Supabase backend; implemented tool calling for Riley to fetch and deliver vitals, medications, and activity logs conversationally.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>SkepticScript &mdash; Real-Time Fact-Checking System<span class="badge">2nd Place</span></h3>
+          <p class="meta">Claude Code Hack Day at AWS Builder Loft (25 teams) | Feb. 2025 | San Francisco, CA</p>
+          <ul>
+            <li>Built real-time fact-checker that verifies spoken claims in under 3 seconds with source attribution; false claims highlighted red, true claims green.</li>
+            <li>Integrated ElevenLabs Scribe for real-time speech-to-text and Gemini 2.0 Flash with Google Search grounding for fact verification with real URLs.</li>
+            <li>Designed sentence-boundary detection with 2-second throttle to balance speed vs accuracy.</li>
+            <li>Built WebSocket orchestrator syncing speech transcription, claim extraction, and fact-checking across microservices; deployed with Supabase realtime updates.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>AI Compute Reallocator &mdash; Multi-Objective RL Agent</h3>
+          <p class="meta">MARA Hackathon | Jun. 2025 | San Francisco, CA</p>
+          <ul>
+            <li>Built multi-objective DQN in PyTorch reallocating 1 MW between Bitcoin mining and AI inference using live ERCOT prices; achieved +$26k profit (18%), +25% efficiency, 70% reduction in idle compute.</li>
+            <li>Implemented MOSEC algorithm with custom Near-on Experience Replay using L2 similarity sampling; dual-network processes 6D state space and 3D preference vectors across 4 miner types and 2 inference hardware classes.</li>
+            <li>Led 3-person team through implementation and delivered live demo to industry judges.</li>
+          </ul>
+        </div>
       </section>
 
       <section class="section">
-        <h2 class="section-title">Projects</h2>
-        <p>
-          I created and managed an inventory using the linked list data
-          structure, adding, removing, and updating items in the inventory.
-        </p>
-        <p>
-          I used the implementation, compilation, and execution of a simulation
-          program that models a grocery checkout counter. Using the data
-          structure queues, a collection of elements can be added or removed in
-          a specific order.
-        </p>
-        <p>
-          In the robotics club, we are currently building and working on a
-          solar-powered boat. My position is to work with the electronics team
-          to program the ESC to the solar boat.
-        </p>
+        <h2>Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Programming</h3>
+            <p>Python, JavaScript/TypeScript, C, C++, Java, SQL, HTML/CSS</p>
+          </div>
+          <div class="skill-category">
+            <h3>AI & Data</h3>
+            <p>PyTorch, TensorFlow, Reinforcement Learning, LLM APIs (Claude, Gemini, Vapi), Prompt Engineering, RAG Pipelines, Agentic Workflows, Scikit-learn, NumPy, Pandas</p>
+          </div>
+          <div class="skill-category">
+            <h3>Web & Cloud</h3>
+            <p>React, Next.js, FastAPI, Flask, Node.js, MongoDB, PostgreSQL, Supabase, AWS (S3, Bedrock, Elastic Beanstalk), Azure, Render</p>
+          </div>
+          <div class="skill-category">
+            <h3>Tools</h3>
+            <p>Docker, Git, GitHub Actions (CI/CD), Linux, Bash, REST APIs, WebSockets, Stripe, Unit Testing (pytest, jest)</p>
+          </div>
+        </div>
       </section>
     </main>
-    <footer class="footer">
-      © 2023 Emanuel's website | All Rights Reserved
+
+    <footer>
+      &copy; 2025 Emanuel Gonzalez
     </footer>
   </body>
 </html>

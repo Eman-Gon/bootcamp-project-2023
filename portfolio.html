@@ -1,105 +1,311 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Portfolio - My Personal Website</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio — Emanuel Gonzalez</title>
     <style>
-      /* body {
-            font-family: 'Courier New', monospace;
-            background-color: olive;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px; 
-            display: inline-block;
-        }
+      body {
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        background-color: #0f172a;
+        color: #e2e8f0;
+        line-height: 1.6;
+      }
 
-        a:hover {
-            text-decoration: underline;
-        }
+      a {
+        color: #60a5fa;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
 
+      a:hover {
+        color: #93c5fd;
+      }
+
+      .navbar {
+        background-color: rgba(15, 23, 42, 0.95);
+        border-bottom: 1px solid #1e293b;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(8px);
+      }
+
+      .navbar .logo a {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #f8fafc;
+        padding: 1rem 0;
+        display: block;
+      }
+
+      .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .nav-list a {
+        color: #94a3b8;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        transition: color 0.2s, background-color 0.2s;
+        display: block;
+      }
+
+      .nav-list a:hover,
+      .nav-list a.active {
+        color: #f8fafc;
+        background-color: #1e293b;
+      }
+
+      .page-header {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem 1rem;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+      }
+
+      .page-header p {
+        color: #94a3b8;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1rem 2rem 3rem;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+
+      .project-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 1.5rem;
+        transition: border-color 0.2s, transform 0.2s;
+      }
+
+      .project-card:hover {
+        border-color: #475569;
+        transform: translateY(-2px);
+      }
+
+      .project-card h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #f8fafc;
+        margin-bottom: 0.25rem;
+      }
+
+      .project-card .meta {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 0.75rem;
+      }
+
+      .project-card p {
+        font-size: 0.9rem;
+        color: #cbd5e1;
+        margin-bottom: 1rem;
+      }
+
+      .badge {
+        display: inline-block;
+        background-color: rgba(96, 165, 250, 0.15);
+        color: #60a5fa;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1rem;
+      }
+
+      .tech-tag {
+        background-color: rgba(148, 163, 184, 0.1);
+        border: 1px solid #334155;
+        color: #94a3b8;
+        font-size: 0.75rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem;
+        border-top: 1px solid #1e293b;
+        color: #475569;
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 640px) {
         .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        .navbar .logo {
-            float: left;
-            margin-left: 20px;
-            padding-right: 20px;
-            border-right: 2px solid white; 
+          flex-direction: column;
+          padding: 0.75rem 1rem;
+          gap: 0.5rem;
         }
 
         .nav-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            float: right;
-            margin-right: 20px;
+          gap: 0;
         }
 
-        .nav-list li {
-            display: inline-block;
+        .page-header h1 {
+          font-size: 1.6rem;
         }
 
-        .project-details {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+        .project-grid {
+          grid-template-columns: 1fr;
         }
-
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin-top: 50px;
-            border: 1px solid black; 
-        }
-
-        .screenshot-container {
-            display: inline-block;
-            background: repeating-radial-gradient(circle at center, white 0px, white 5px, transparent 5px, transparent 10px);
-            padding: 10px;
-        } */
+      }
     </style>
   </head>
-
   <body>
-    <main>
-      <nav class="navbar">
-        <h1 class="logo">
-          <a href="index.html">Emanuel's website</a>
-        </h1>
-        <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div style="clear: both"></div>
-      <h1 class="page-title">Portfolio</h1>
-      <div class="screenshot-container">
-        <img
-          src="Screen Shot 2023-10-07 at 10.20.55 PM.png"
-          alt="Not showing"
-          width="400"
-          height="300"
-        />
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">Emanuel Gonzalez</a>
       </div>
-      <div class="project-details">
-        <p class="project-name">Project Name</p>
-        <p class="project-description">Project Description goes here.</p>
-        <a href="index.html">Learn More</a>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="page-header">
+      <h1>Portfolio</h1>
+      <p>A selection of projects I've built at hackathons and through my work.</p>
+    </div>
+
+    <main class="container">
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>DepScope<span class="badge">1st Place</span></h3>
+          <p class="meta">Continual Learning Hackathon &mdash; Feb. 2025</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Composio</span>
+            <span class="tech-tag">SSE</span>
+            <span class="tech-tag">Plivo</span>
+            <span class="tech-tag">Multi-Agent</span>
+          </div>
+          <p>
+            Dependency risk analysis platform with 3 parallel agents evaluating
+            open-source packages for security vulnerabilities, maintenance health,
+            and bus factor before installation.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>CareLink<span class="badge">2nd Place</span></h3>
+          <p class="meta">Vapi AI Hackathon (600+ participants) &mdash; Feb. 2025</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Vapi AI</span>
+            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">Voice AI</span>
+          </div>
+          <p>
+            24/7 AI voice assistant for nursing homes, enabling families to
+            call for real-time patient updates with automatic nurse escalation
+            routing.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>SkepticScript<span class="badge">2nd Place</span></h3>
+          <p class="meta">Claude Code Hack Day at AWS (25 teams) &mdash; Feb. 2025</p>
+          <div class="tech-tags">
+            <span class="tech-tag">ElevenLabs</span>
+            <span class="tech-tag">Gemini</span>
+            <span class="tech-tag">WebSockets</span>
+            <span class="tech-tag">Supabase</span>
+          </div>
+          <p>
+            Real-time fact-checker verifying spoken claims in under 3 seconds
+            with source attribution. False claims highlighted red, true claims
+            green.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>AI Compute Reallocator</h3>
+          <p class="meta">MARA Hackathon &mdash; Jun. 2025</p>
+          <div class="tech-tags">
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">DQN</span>
+            <span class="tech-tag">ERCOT API</span>
+          </div>
+          <p>
+            Multi-objective reinforcement learning agent reallocating 1 MW
+            between Bitcoin mining and AI inference. Achieved +$26k profit,
+            +25% efficiency, and 70% less idle compute.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>Creek Lands Conservation</h3>
+          <p class="meta">Hack4Impact &mdash; Feb. 2024 &ndash; May 2025</p>
+          <div class="tech-tags">
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">Stripe</span>
+            <span class="tech-tag">Clerk</span>
+            <span class="tech-tag">AWS S3</span>
+          </div>
+          <p>
+            Full-stack event management system with Stripe payments, role-based
+            auth, and bilingual PDF waiver workflow generating 200+ documents.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <h3>Invoice Automation</h3>
+          <p class="meta">Cal Poly DxHub &mdash; Jul. 2025</p>
+          <div class="tech-tags">
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">AWS Bedrock</span>
+            <span class="tech-tag">Claude 3.5</span>
+          </div>
+          <p>
+            AI-powered invoice processing with prompt engineering, reducing
+            processing time by 99% with 95%+ accuracy. Multi-tenant architecture
+            with semantic search via Amazon Titan embeddings.
+          </p>
+        </div>
       </div>
     </main>
-    <footer>© 2023 Emanuel's website | All Rights Reserved</footer>
+
+    <footer>
+      &copy; 2025 Emanuel Gonzalez
+    </footer>
   </body>
 </html>
