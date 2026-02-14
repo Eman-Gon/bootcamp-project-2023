@@ -34,6 +34,7 @@ export default function Blog() {
         height={300}
         layout="responsive"
       />
+      
 
       <section className="blog-previews">
         {blogs.map((blog) => (

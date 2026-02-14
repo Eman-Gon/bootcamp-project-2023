@@ -1,9 +1,11 @@
-import Image from "next/image";
-import BlogModel from "../database/blogschema";
-import connectDB from "../database/db"; // Ensure this
-import mountainImage from "../../../mountain.jpg"; // Adjus
-import { IComment, IBlog } from "../database/blogschema";
-import style from "./page.module.css";
+import React from 'react';
+import Image from 'next/image';
+import BlogModel from '../database/blogschema'; // or ProjectModel from '../database/projectschema';
+import connectDB from '../database/db';
+import { IComment, IBlog } from '../database/blogschema'; // or IProject from '../database/projectschema';
+import style from './page.module.css';
+// import Comment from './Comment'; // Import the Comment component
+import Comment from './comment';
 
 type IParams = {
   params: {
@@ -12,10 +14,9 @@ type IParams = {
 };
 
 async function getBlog(slug: string) {
-  await connectDB(); // function from db.ts before
-
+  await connectDB();
   try {
-    const blog: IBlog = await BlogModel.findOne({ slug: slug }).orFail();
+    const blog: IBlog = await BlogModel.findOne({ slug: slug }).orFail(); // or ProjectModel for projects
     return blog;
   } catch (err) {
     return null;
@@ -24,9 +25,11 @@ async function getBlog(slug: string) {
 
 export default async function BlogPage({ params: { slug } }: IParams) {
   const blogData: IBlog | null = await getBlog(slug);
+
   if (!blogData) {
     return <div>Not Found</div>;
   }
+
   return (
     <>
       <div className={style.blog}>
@@ -35,12 +38,12 @@ export default async function BlogPage({ params: { slug } }: IParams) {
           {blogData.date.toISOString().substring(0, 10)}
         </h6>
         <div className={style.img}>
-        <Image
-        src={mountainImage}
-        alt="Mountain"
-        width={400}
-        height={300}
-        layout="responsive"
+          <Image
+            src="/mountain.jpg"
+            alt="Mountain"
+            width={400}
+            height={300}
+            layout="responsive"
           ></Image>
         </div>
         <div className={style.content_container}>
@@ -50,11 +53,11 @@ export default async function BlogPage({ params: { slug } }: IParams) {
           ></p>
         </div>
       </div>
-      {/* <div>
+      <div>
         {blogData.comments.map((comment: IComment, index: number) => (
-          <Comment key={index} {...comment} />
+          <Comment key={index} comment={comment} />
         ))}
-      </div> */}
+      </div>
     </>
   );
 }

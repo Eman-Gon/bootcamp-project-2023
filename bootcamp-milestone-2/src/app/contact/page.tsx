@@ -1,3 +1,30 @@
+// import React from 'react';
+// import styles from './contact.module.css';
+// import Image from 'next/image';
+// import mountainImage from '../../../mountain.jpg';
+// import ContactForm from '@/components/ContactForm'; // Import the ContactForm component
+
+
+// export default function Contact() {
+//   return (
+//     <main className={styles.main}>
+//       <div className={styles.clear}></div>
+//       <h1 className={styles.pageTitle}>Contact</h1>
+//       {/* Use Next.js Image component for optimized image handling */}
+//       <Image
+//         src={mountainImage}
+//         alt="Mountain"
+//         width={400}
+//         height={300}
+//         layout="responsive"
+//       />
+//       {/* Render the ContactForm component */}
+//       <ContactForm />
+//       <footer>© 2023 Emanuel's website | All Rights Reserved</footer>
+//     </main>
+//   );
+// }
+
 // // import React from "react";
 // // import styles from "./contact.module.css";
 // // import Image from "next/image";

@@ -3,9 +3,8 @@
   <head>
     <title>My Personal Website</title>
     <style>
-        
       body {
-        font-family: 'Courier New', monospace;
+        font-family: "Courier New", monospace;
         background-color: olive;
         color: white;
         margin: 0;
@@ -14,7 +13,7 @@
       a {
         color: white;
         text-decoration: none;
-        padding: 10px 20px; 
+        padding: 10px 20px;
         display: inline-block;
       }
       a:hover {
@@ -26,10 +25,10 @@
         text-align: center;
       }
       .navbar .logo {
-        float: left; 
+        float: left;
         margin-left: 20px;
         padding-right: 20px;
-        border-right: 2px solid white; 
+        border-right: 2px solid white;
       }
       .nav-list {
         list-style-type: none;
@@ -44,42 +43,131 @@
       .about {
         padding: 20px;
       }
+      .section {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px;
+      }
+      .section h2 {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 8px;
+      }
+      .section ul {
+        list-style-type: square;
+        padding-left: 20px;
+      }
+      .section li {
+        margin-bottom: 8px;
+      }
       footer {
         text-align: center;
         padding: 20px 0;
         background-color: rgba(0, 0, 0, 0.7);
         margin-top: 50px;
-        border: 1px solid black; 
+        border: 1px solid black;
       }
     </style>
   </head>
   <body>
     <main>
-        <nav class="navbar">
-            <h1 class="logo">
-              <a href="index.html">Emanuel's website</a>
-            </h1>
-            <ul class="nav-list">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="portfolio.html">Portfolio</a></li>
-              <li><a href="resume.html">Resume</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div style="clear:both;"></div> 
-        <div class="about">
-            <div class="about-image">
-                <img src="mountain.jpg" alt="Not showing" width="400" height="300">
-            </div>
-            <div class="about-text">
-              <p><em>Hello World!</em> This is my website.</p>
-              <p><strong>Hello, I'm Emanuel Gonzalez, a dedicated first-year transfer student majoring in Computer Science. My academic journey began at Skyline College, and I have came to CAL POLY SLO to specialize in Artificial Intelligence and Machine Learning.</strong></p>
-            </div>
+      <nav class="navbar">
+        <h1 class="logo">
+          <a href="index.html">Emanuel's website</a>
+        </h1>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div style="clear: both"></div>
+      <div class="about">
+        <div class="about-image">
+          <img src="mountain.jpg" alt="Not showing" width="400" height="300" />
         </div>
+        <div class="about-text">
+          <p><em>Hello World!</em> This is my website.</p>
+          <p>
+            <strong
+              >Hello, I'm Emanuel Gonzalez, a Computer Science student at
+              California Polytechnic State University, San Luis Obispo. I
+              specialize in Artificial Intelligence and Machine Learning, with
+              coursework in Advanced ML, Deep Learning, and Mobile Autonomous
+              Robotics. I'm passionate about building AI-powered systems and
+              have won multiple hackathons.</strong
+            >
+          </p>
+          <p>
+            415-400-6707 |
+            <a href="mailto:emanpiece@gmail.com">emanpiece@gmail.com</a> |
+            <a href="https://linkedin.com/in/eman279">LinkedIn</a> |
+            <a href="https://github.com/Eman-Gon">GitHub</a>
+          </p>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>Education</h2>
+        <ul>
+          <li>
+            <strong>California Polytechnic State University, San Luis Obispo, CA</strong><br />
+            Bachelor of Science in Computer Science (Sep. 2023 - Dec. 2025)<br />
+            Coursework: Advanced Machine Learning, Artificial Intelligence, Deep Learning, Mobile Autonomous Robotics, Knowledge Discovery of Data, Security
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Experience</h2>
+        <ul>
+          <li>
+            <strong>AI Engineering Fellow</strong> — Cal Poly Digital Transformation Hub (DxHub) (Jul. 2025)<br />
+            Selected for intensive AI program across 23 CSU campuses; built invoice automation using FastAPI, React, and AWS Bedrock (Claude 3.5 Sonnet), reducing processing time by 99% with 95%+ accuracy. Deployed multi-tenant architecture on AWS with Amazon Titan embeddings for semantic search.
+          </li>
+          <li>
+            <strong>Software Developer</strong> — Hack4Impact, Creek Lands Conservation (Feb. 2024 - May 2025)<br />
+            Built full-stack event management system handling 100+ registrations with MongoDB; integrated Stripe webhooks for automated payments and role-based auth with Clerk. Developed bilingual PDF waiver workflow generating 200+ documents stored in AWS S3; reduced page load times by 40%.
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <strong>DepScope — Dependency Risk Analysis Platform</strong> (1st Place, Continual Learning Hackathon)<br />
+            Built multi-agent system with 3 parallel agents evaluating open-source dependencies for security vulnerabilities, maintenance health, and bus factor. Implemented real-time SSE streaming and Plivo voice alerts.
+          </li>
+          <li>
+            <strong>CareLink — AI Voice Assistant for Nursing Homes</strong> (2nd Place, Vapi AI Hackathon, 600+ participants)<br />
+            Built 24/7 AI assistant for families to call for patient updates; integrated Vapi AI voice pipeline with real-time transcription and automatic nurse escalation routing.
+          </li>
+          <li>
+            <strong>SkepticScript — Real-Time Fact-Checking System</strong> (2nd Place, Claude Code Hack Day at AWS)<br />
+            Built real-time fact-checker verifying spoken claims in under 3 seconds with source attribution. Integrated ElevenLabs Scribe and Gemini 2.0 Flash with Google Search grounding.
+          </li>
+          <li>
+            <strong>AI Compute Reallocator — Multi-Objective RL Agent</strong> (MARA Hackathon)<br />
+            Built multi-objective DQN in PyTorch reallocating 1 MW between Bitcoin mining and AI inference; achieved +$26k profit (18%), +25% efficiency, and 70% reduction in idle compute.
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Skills</h2>
+        <ul>
+          <li><strong>Programming:</strong> Python, JavaScript/TypeScript, C, C++, Java, SQL, HTML/CSS</li>
+          <li><strong>AI & Data:</strong> PyTorch, TensorFlow, Reinforcement Learning, LLM APIs, Prompt Engineering, RAG Pipelines, Agentic Workflows, Scikit-learn, NumPy, Pandas</li>
+          <li><strong>Web & Cloud:</strong> React, Next.js, FastAPI, Flask, Node.js, MongoDB, PostgreSQL, Supabase, AWS, Azure</li>
+          <li><strong>Tools:</strong> Docker, Git, GitHub Actions (CI/CD), Linux, Bash, REST APIs, WebSockets, Stripe</li>
+        </ul>
+      </section>
     </main>
     <footer class="footer">
-        © 2023 Emanuel's website | All Rights Reserved
+      © 2023 Emanuel's website | All Rights Reserved
     </footer>
   </body>
 </html>

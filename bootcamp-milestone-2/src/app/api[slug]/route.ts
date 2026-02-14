@@ -1,37 +1,30 @@
-import { NextRequest, NextResponse } from 'next/server'
-import connectDB from "@/database/db"
-import Blogs from "../../database/blogschema"; // Ensure this import path is correct
+import { NextRequest, NextResponse } from 'next/server';
+import connectDB from "@/database/db";
+import Projects from "@/database/projectschema";
 
-type IParams = {
-		params: {
-			slug: string
-		}
-}
+export async function POST(req: NextRequest) {
+  await connectDB();
+  const body = await req.json();
 
-/* 
-	In order to use params, you need to have a request parameter before
+  // Validate request body
+  if (!body.user || !body.comment) {
+    return NextResponse.json({ error: 'User and comment are required' }, { status: 400 });
+  }
 
-	The reason why we do { params }, is to destructure, the object, meaning,
-	it allows us to obtain the individual properties within the "IParams" 
-	object directly and conveniently, 
-	such as the `params` property.
+  try {
+    const project = await Projects.findOneAndUpdate(
+      { slug: body.slug },
+      { $push: { comments: { user: body.user, comment: body.comment } } },
+      { new: true }
+    );
 
-	If we didn't do this, to obtain slug would look messy,
-	ex.
-	const slug = params.params.slug
+    if (!project) {
+      return NextResponse.json({ error: 'Project not found' }, { status: 404 });
+    }
 
-	There are more ways to destructure this, but that is up to you to find out
-	lol.
-
- */
-export async function GET(req: NextRequest, { params }: IParams) {
-    await connectDB() // function from db.ts before
-		const { slug } = params // another destructure
-
-	   try {
-	        const blog = await Blogs.findOne({ slug }).orFail()
-	        return NextResponse.json(blog)
-	    } catch (err) {
-	        return NextResponse.json('Blog not found.', { status: 404 })
-	    }
+    return NextResponse.json(project);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: 'An error occurred while adding the comment' }, { status: 500 });
+  }
 }
