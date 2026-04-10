@@ -114,11 +114,11 @@
         color: #00eeff;
         text-transform: uppercase;
         opacity: 0;
+        transition: opacity 0.5s ease;
       }
 
       .boot-text {
         text-align: center;
-        opacity: 0;
       }
 
       .boot-subtitle {
@@ -129,6 +129,7 @@
         margin-bottom: 2rem;
         text-transform: uppercase;
         opacity: 0;
+        transition: opacity 0.9s ease;
       }
 
       .boot-h1 {
@@ -140,6 +141,7 @@
         letter-spacing: 0.05em;
         text-shadow: 0 0 20px rgba(0, 238, 255, 0.5);
         opacity: 0;
+        transition: opacity 0.9s ease;
       }
 
       .boot-role {
@@ -149,6 +151,7 @@
         margin-bottom: 2rem;
         letter-spacing: 0.1em;
         opacity: 0;
+        transition: opacity 0.9s ease;
       }
 
       .boot-divetext {
@@ -159,6 +162,7 @@
         letter-spacing: 12px;
         margin-bottom: 2rem;
         opacity: 0;
+        transition: opacity 0.9s ease;
       }
 
       .link-start-btn {
@@ -171,7 +175,7 @@
         padding: 12px 30px;
         cursor: pointer;
         text-transform: uppercase;
-        transition: all 0.3s ease;
+        transition: opacity 0.9s ease, background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
         opacity: 0;
         pointer-events: auto;
       }
@@ -653,16 +657,24 @@
         }
 
         replaySequence() {
+          this.startTime = null;
           this.phaseT = 0;
           this.createPolygons();
           this.createGridLines();
           this.particles = [];
           this.shockwaves = [];
+          ['#statusLabel'].forEach(id => {
+            const el = document.getElementById(id); if (el) el.style.opacity = '0';
+          });
+          ['.boot-subtitle', '.boot-h1', '.boot-role', '.boot-divetext'].forEach(sel => {
+            const el = document.querySelector(sel); if (el) el.style.opacity = '0';
+          });
+          const btn = document.getElementById('linkStartBtn');
+          if (btn) btn.style.opacity = '0';
         }
 
         update() {
           this.time++;
-          this.phaseT++;
 
           // PHASE 1 (0-3000ms): BOOT - floating polygons
           if (this.phaseT < 3000) {
@@ -965,7 +977,9 @@
           this.ctx.fill();
         }
 
-        animate = () => {
+        animate = (ts) => {
+          if (!this.startTime) this.startTime = ts;
+          this.phaseT = ts - this.startTime;
           this.update();
           this.draw();
           this.updateUI();
@@ -973,26 +987,30 @@
         };
 
         updateUI() {
-          const statusLabel = document.getElementById('statusLabel');
-          const bootText = document.querySelector('.boot-text');
-
+          const sl = document.getElementById('statusLabel');
           if (this.phaseT < 1500) {
-            statusLabel.style.opacity = '0';
+            sl.style.opacity = '0';
           } else if (this.phaseT < 3000) {
-            statusLabel.style.opacity = '1';
-            statusLabel.textContent = 'NERVEGEAR OS v2.0 // INITIALIZING';
+            sl.style.opacity = '1';
+            sl.textContent = 'NERVEGEAR OS v2.0 // INITIALIZING';
           } else if (this.phaseT < 5000) {
-            statusLabel.textContent = 'SCANNING BIOMETRIC DATA...';
+            sl.style.opacity = '1';
+            sl.textContent = 'SCANNING BIOMETRIC DATA...';
           } else if (this.phaseT < 8000) {
-            statusLabel.textContent = 'CONSTRUCTING VIRTUAL WORLD...';
+            sl.style.opacity = '1';
+            sl.textContent = 'CONSTRUCTING VIRTUAL WORLD...';
           } else {
-            statusLabel.textContent = 'LINK START // WORLD LOADED';
-
-            // Fade in hero text
-            if (this.phaseT >= 8000) {
-              bootText.style.opacity = Math.min((this.phaseT - 8000) / 1000, 1);
-            }
+            sl.style.opacity = '1';
+            sl.textContent = 'LINK START // WORLD LOADED';
           }
+          // Staggered text fade-in — each element has transition: opacity 0.9s in CSS
+          const q = (sel) => document.querySelector(sel);
+          const show = (el, cond) => { if (el) el.style.opacity = cond ? '1' : '0'; };
+          show(q('.boot-subtitle'),              this.phaseT >= 8300);
+          show(q('.boot-h1'),                    this.phaseT >= 9000);
+          show(q('.boot-role'),                  this.phaseT >= 9700);
+          show(q('.boot-divetext'),              this.phaseT >= 10400);
+          show(document.getElementById('linkStartBtn'), this.phaseT >= 11100);
         }
       }
 
