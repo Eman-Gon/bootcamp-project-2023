@@ -33,8 +33,6 @@
   const bodyWidth = 18;
   const bodyHeight = 12;
   const headRadius = 10;
-  const tailLength = 15;
-
   function resize() {
     dimensions.dpr = Math.min(window.devicePixelRatio || 1, 2);
     dimensions.width = nav.clientWidth;
@@ -42,6 +40,7 @@
     canvas.width = Math.round(dimensions.width * dimensions.dpr);
     canvas.height = Math.round(dimensions.height * dimensions.dpr);
     ctx.setTransform(dimensions.dpr, 0, 0, dimensions.dpr, 0, 0);
+    cat.x = Math.min(Math.max(cat.x, 26), Math.max(26, dimensions.width - 26));
   }
 
   function baseY() {
@@ -175,8 +174,9 @@
       ctx.moveTo(x - 7, y + 5);
       ctx.bezierCurveTo(x - 16, y + 10, x - 8, y + 15, x + 2, y + 13);
     } else if (pose === 'lying') {
+      const flick = Math.sin(cat.frame * 0.22) * 4;
       ctx.moveTo(x - 8, y + 8);
-      ctx.bezierCurveTo(x - 18, y + 10, x - 20 + sway * 2, y + 5, x - 10, y + 3);
+      ctx.bezierCurveTo(x - 18, y + 10, x - 20 + flick, y + 4, x - 10 + flick * 0.25, y + 3);
     } else {
       ctx.moveTo(x - 8, y + 5);
       ctx.bezierCurveTo(x - 16, y - 1, x - 17, y + 8 + sway * 2, x - 8, y + 10);
@@ -198,7 +198,7 @@
   function drawCat(now) {
     const y = baseY();
     const brightEyes = now < cat.reactionGlowUntil;
-    const headX = cat.x + cat.direction * 8;
+    const headX = cat.x + 8;
     const headY = y + (cat.state === 'lying' ? 9 : 3);
     const sway = Math.sin(cat.frame * 0.04);
 
