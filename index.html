@@ -244,6 +244,80 @@
       .section-links a:hover { color: #00d4ff; opacity: 1; }
       .section-links .sep { color: #1e293b; }
 
+      .legacy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+      }
+      .legacy-card {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: 0 22px 40px rgba(2, 8, 24, 0.28);
+      }
+      .legacy-card h4 {
+        color: #ffffff;
+        font-size: 1.05rem;
+        margin-bottom: 0.35rem;
+      }
+      .legacy-card p + h4 { margin-top: 1.4rem; }
+      .legacy-card img,
+      .legacy-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        display: block;
+        border: 1px solid rgba(148, 163, 184, 0.16);
+      }
+      .legacy-kicker {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: #00d4ff;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .legacy-form {
+        display: grid;
+        gap: 0.9rem;
+      }
+      .legacy-form label {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        color: #cbd5e1;
+      }
+      .legacy-input,
+      .legacy-textarea {
+        width: 100%;
+        background: rgba(2, 8, 24, 0.72);
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        border-radius: 10px;
+        color: #f8fafc;
+        padding: 0.85rem 0.95rem;
+        font: inherit;
+      }
+      .legacy-textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+      .legacy-submit {
+        justify-self: start;
+        background: transparent;
+        border: 1px solid #00d4ff;
+        border-radius: 999px;
+        color: #00d4ff;
+        padding: 0.8rem 1.3rem;
+        cursor: pointer;
+        font-family: 'Share Tech Mono', monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .legacy-submit:hover {
+        background: rgba(0, 212, 255, 0.08);
+      }
+
       /* ── Subsections (Education, Experience, etc.) ── */
       .subsection { margin-bottom: 3rem; }
       .subsection h3 {
@@ -506,7 +580,20 @@
     <!-- ════════════════════  HERO  ════════════════════ -->
     <header id="hero" class="hero-section">
       <canvas class="boot-canvas" id="bootCanvas"></canvas>
-      <button id="skipBtn" class="skip-btn">skip intro</button>
+      <button id="skipBtn" style="
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        z-index: 100;
+        background: none;
+        border: none;
+        color: rgba(0, 212, 255, 0.5);
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+        cursor: pointer;
+        padding: 8px 12px;
+      ">SKIP INTRO</button>
       <div id="warpFlash" class="warp-flash"></div>
       <div class="status-label" id="statusLabel"></div>
       <div class="hero-content">
@@ -627,6 +714,47 @@
             </div>
           </div>
         </div>
+
+        <div class="subsection">
+          <h3>Original Resume Page</h3>
+          <div class="legacy-grid">
+            <div class="legacy-card">
+              <p class="legacy-kicker">Visual</p>
+              <img src="mountain.jpg" alt="Mountain landscape from the original resume page" class="legacy-image" width="400" height="300" />
+            </div>
+            <div class="legacy-card">
+              <p class="legacy-kicker">Education</p>
+              <h4>Skyline College, San Bruno, CA</h4>
+              <p class="meta">January 2022 - July 2023</p>
+              <p>Bachelor of Science in Computer Science (In Progress)<br />GPA: 3.74</p>
+              <h4>California Polytechnic State University, San Luis Obispo, CA</h4>
+              <p class="meta">September 2023 - 2025</p>
+              <p>Bachelor of Science in Computer Science (In Progress)</p>
+            </div>
+            <div class="legacy-card">
+              <p class="legacy-kicker">Experience</p>
+              <h4>VR Learning Systems Analyst, (MESA) at Skyline College</h4>
+              <p class="meta">June 2023 - September 2023</p>
+              <p>Conduct research to identify the most suitable and beneficial Virtual Reality systems for use within educational purposes.</p>
+              <h4>Enterprise for youth, Youth council</h4>
+              <p class="meta">November 2019 - July 2020</p>
+              <p>Team collaboration</p>
+              <h4>Student Government: Associated Students of Skyline College (ASSC)</h4>
+              <p class="meta">November 2022 - Present</p>
+              <p>Organized events</p>
+            </div>
+            <div class="legacy-card">
+              <p class="legacy-kicker">Skills &amp; Projects</p>
+              <p>Fluent in English and Spanish</p>
+              <p>Proficient in Java, Proficient in Python, Proficient in C++</p>
+              <p>Microsoft Word, Excel</p>
+              <h4>Original Projects</h4>
+              <p>I created and managed an inventory using the linked list data structure, adding, removing, and updating items in the inventory.</p>
+              <p>I used the implementation, compilation, and execution of a simulation program that models a grocery checkout counter. Using the data structure queues, a collection of elements can be added or removed in a specific order.</p>
+              <p>In the robotics club, we are currently building and working on a solar-powered boat. My position is to work with the electronics team to program the ESC to the solar boat.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -726,6 +854,22 @@
             <a href="#" class="view-project">View Project &rarr;</a>
           </div>
         </div>
+
+        <div class="subsection">
+          <h3>Original Portfolio Page</h3>
+          <div class="legacy-grid">
+            <div class="legacy-card">
+              <p class="legacy-kicker">Screenshot</p>
+              <img src="Screen Shot 2023-10-07 at 10.20.55 PM.png" alt="Screenshot from the original portfolio page" class="legacy-image" width="400" height="300" />
+            </div>
+            <div class="legacy-card">
+              <p class="legacy-kicker">Project Details</p>
+              <h4>Project Name</h4>
+              <p>Project Description goes here.</p>
+              <a href="#portfolio" class="view-project">Learn More &rarr;</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -742,6 +886,21 @@
         <div class="empty-state" id="blog-empty">
           <h4>Posts coming soon</h4>
           <p>Working on writing about AI engineering, hackathons, and the projects I've been building. Stay tuned.</p>
+        </div>
+
+        <div class="subsection">
+          <h3>Original Blog Page</h3>
+          <div class="legacy-grid">
+            <div class="legacy-card">
+              <p class="legacy-kicker">Visual</p>
+              <img src="mountain.jpg" alt="Mountain landscape from the original blog page" class="legacy-image" width="400" height="300" />
+            </div>
+            <div class="legacy-card">
+              <p class="legacy-kicker">Original Copy</p>
+              <h4>Blogs</h4>
+              <p>No blogs yet! But there will be some someday, maybe about AI or even about my animals back at home.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -782,6 +941,31 @@
             </div>
           </div>
         </div>
+
+        <div class="subsection">
+          <h3>Original Contact Page</h3>
+          <div class="legacy-grid">
+            <div class="legacy-card">
+              <p class="legacy-kicker">Visual</p>
+              <img src="mountain.jpg" alt="Mountain landscape from the original contact page" class="legacy-image" width="400" height="300" />
+            </div>
+            <div class="legacy-card">
+              <p class="legacy-kicker">Contact Form</p>
+              <form id="contact-form" class="legacy-form">
+                <label for="contact-name">Name:</label>
+                <input type="text" id="contact-name" name="name" class="legacy-input" />
+
+                <label for="contact-email">Email:</label>
+                <input type="email" id="contact-email" name="email" class="legacy-input" />
+
+                <label for="contact-message">Message:</label>
+                <textarea id="contact-message" name="message" rows="4" cols="50" class="legacy-textarea"></textarea>
+
+                <input type="submit" value="Submit" class="legacy-submit" />
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -789,6 +973,8 @@
 
     <!-- ════════════════════  SCRIPTS  ════════════════════ -->
     <script>
+      document.body.style.overflow = 'hidden';
+
       /* ── Blog data ── */
       (function () {
         var blogs = [
@@ -846,6 +1032,7 @@
           this.warpScale     = 1;
           this.warpStartTime = 0;
           this.warpScrolled  = false;
+          this.scrollUnlocked = false;
 
           this.initBootSequence();
           this.setupEventListeners();
@@ -948,9 +1135,12 @@
           // Skip intro
           const skipBtn = document.getElementById('skipBtn');
           if (skipBtn) {
-            skipBtn.addEventListener('click', (e) => {
-              e.stopPropagation();
-              this.skipToPhase4();
+            skipBtn.addEventListener('click', () => {
+              this.jumpToPhase4();
+              document.body.style.overflow = 'auto';
+              this.scrollUnlocked = true;
+              document.getElementById('skipBtn').style.display = 'none';
+              document.querySelector('#resume').scrollIntoView({ behavior: 'smooth' });
             });
           }
         }
@@ -972,13 +1162,27 @@
           this.warpScale     = 1;
         }
 
-        skipToPhase4() {
+        jumpToPhase4() {
           // Jump the phase timer to phase-4 territory
           this.startTime = performance.now() - 8600;
           // Pre-materialise every grid line
           for (const line of this.gridLines) { line.opacity = 0.4; }
           // Destroy all polygons (no beam needed)
           for (const poly of this.polygons) { poly.destroyed = true; }
+        }
+
+        unlockScroll() {
+          if (!this.scrollUnlocked) {
+            document.body.style.overflow = 'auto';
+            this.scrollUnlocked = true;
+          }
+        }
+
+        hideSkipButton() {
+          const skipBtn = document.getElementById('skipBtn');
+          if (skipBtn) {
+            skipBtn.style.display = 'none';
+          }
         }
 
         createShockwave(x, y) {
@@ -990,6 +1194,8 @@
           this.phaseT     = 0;
           this.warpActive = false;
           this.warpScale  = 1;
+          this.scrollUnlocked = false;
+          document.body.style.overflow = 'hidden';
           this.createPolygons();
           this.createGridLines();
           this.particles  = [];
@@ -1298,10 +1504,12 @@
           show(q('.boot-divetext'),                      this.phaseT >= 10400);
           show(document.getElementById('linkStartBtn'),  this.phaseT >= 11100);
 
-          // Skip button: visible 0.5s → 8s
           const skipBtn = document.getElementById('skipBtn');
-          if (skipBtn) {
-            skipBtn.style.opacity = (this.phaseT > 500 && this.phaseT < 8000) ? '0.4' : '0';
+          if (this.phaseT >= 8000) {
+            this.unlockScroll();
+            this.hideSkipButton();
+          } else if (skipBtn) {
+            skipBtn.style.display = 'block';
           }
         }
       }
@@ -1309,14 +1517,13 @@
       /* ══════════════════════════════════════════════════════
          Smooth-scroll nav + active link via IntersectionObserver
       ══════════════════════════════════════════════════════ */
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const href = link.getAttribute('href');
-          if (href.startsWith('#')) {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) target.scrollIntoView({ behavior: 'smooth' });
-          }
+      document.querySelectorAll('nav a').forEach(a => {
+        a.addEventListener('click', e => {
+          const href = a.getAttribute('href');
+          if (!href || !href.startsWith('#')) return;
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
       });
 
