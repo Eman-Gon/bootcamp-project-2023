@@ -8,6 +8,8 @@
     <style>
       /* ── Reset ── */
       * { margin: 0; padding: 0; box-sizing: border-box; }
+      * { cursor: none !important; }
+      a, button { cursor: none !important; }
 
       html { scroll-behavior: smooth; }
 
@@ -35,6 +37,11 @@
         top: 0;
         z-index: 200;
         backdrop-filter: blur(12px);
+        overflow: hidden;
+      }
+      .navbar > *:not(#navCatCanvas) {
+        position: relative;
+        z-index: 60;
       }
       .navbar .logo a {
         font-family: 'Share Tech Mono', monospace;
@@ -60,6 +67,26 @@
       .nav-list a:hover, .nav-list a.active {
         color: #f1f5f9;
         background-color: rgba(255, 255, 255, 0.06);
+      }
+      #navCatCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        display: block;
+      }
+      #cursorCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 9999;
+        pointer-events: none;
+        display: block;
       }
 
       /* ── Hero Section ── */
@@ -579,6 +606,7 @@
 
     <!-- ════════════════════  NAVBAR  ════════════════════ -->
     <nav class="navbar">
+      <canvas id="navCatCanvas"></canvas>
       <div class="logo"><a href="#hero">Emanuel Gonzalez</a></div>
       <ul class="nav-list">
         <li><a href="#hero"      class="nav-link active">Home</a></li>
@@ -984,7 +1012,10 @@
     <footer>&copy; 2026 Emanuel Gonzalez</footer>
 
     <!-- ════════════════════  SCRIPTS  ════════════════════ -->
+    <canvas id="cursorCanvas"></canvas>
     <script src="bg.js"></script>
+    <script src="cursor.js"></script>
+    <script src="navbar-cat.js"></script>
     <script>
       document.body.style.overflow = 'hidden';
 
@@ -1030,15 +1061,11 @@
           this.startTime  = null;
           this.mouseX     = this.width  / 2;
           this.mouseY     = this.height / 2;
-          this.lastMouseX = this.mouseX;
-          this.lastMouseY = this.mouseY;
 
           this.polygons      = [];
           this.particles     = [];
           this.gridLines     = [];
           this.shockwaves    = [];
-          this.cursorTrail   = [];
-          this.speedParticles = [];
 
           // Warp-speed state
           this.warpActive    = false;
@@ -1109,26 +1136,6 @@
           document.addEventListener('mousemove', (e) => {
             this.mouseX = e.clientX;
             this.mouseY = e.clientY;
-            const dx = this.mouseX - this.lastMouseX;
-            const dy = this.mouseY - this.lastMouseY;
-            const velocity = Math.sqrt(dx * dx + dy * dy);
-
-            this.cursorTrail.push({ x: this.mouseX, y: this.mouseY, age: 0, maxAge: 28 });
-            if (this.cursorTrail.length > 28) this.cursorTrail.shift();
-
-            if (velocity > 3) {
-              for (let i = 0; i < Math.floor(velocity * 0.3); i++) {
-                const angle = Math.atan2(dy, dx) + (Math.random() - 0.5) * Math.PI * 0.5;
-                this.speedParticles.push({
-                  x: this.mouseX - dx * 0.3, y: this.mouseY - dy * 0.3,
-                  vx: Math.cos(angle) * velocity * 0.6,
-                  vy: Math.sin(angle) * velocity * 0.6,
-                  life: 1, size: Math.random() * 1.5 + 0.5,
-                });
-              }
-            }
-            this.lastMouseX = this.mouseX;
-            this.lastMouseY = this.mouseY;
           });
 
           // Click shockwave — only within the hero
@@ -1292,18 +1299,6 @@
             p.x += p.vx; p.y += p.vy; p.vy += 0.2; p.life -= 0.02;
             if (p.life <= 0) this.particles.splice(i, 1);
           }
-          for (let i = this.speedParticles.length - 1; i >= 0; i--) {
-            const p = this.speedParticles[i];
-            p.x += p.vx; p.y += p.vy; p.vy += 0.2; p.life -= 0.03;
-            if (p.life <= 0) this.speedParticles.splice(i, 1);
-          }
-
-          // Cursor trail
-          for (let i = this.cursorTrail.length - 1; i >= 0; i--) {
-            this.cursorTrail[i].age++;
-            if (this.cursorTrail[i].age >= this.cursorTrail[i].maxAge) this.cursorTrail.splice(i, 1);
-          }
-
           // Shockwaves
           for (let i = this.shockwaves.length - 1; i >= 0; i--) {
             this.shockwaves[i].radius += 15;
@@ -1344,12 +1339,6 @@
             this.ctx.beginPath(); this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); this.ctx.fill();
           }
 
-          // Speed particles
-          for (const p of this.speedParticles) {
-            this.ctx.fillStyle = `rgba(0,212,255,${p.life})`;
-            this.ctx.beginPath(); this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); this.ctx.fill();
-          }
-
           // Shockwaves
           for (const sw of this.shockwaves) {
             const a = 1 - sw.radius / sw.maxRadius;
@@ -1357,8 +1346,6 @@
             this.ctx.lineWidth   = 2;
             this.ctx.beginPath(); this.ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2); this.ctx.stroke();
           }
-
-          this.drawCursor();
         }
 
         drawPolygon(poly) {
@@ -1442,42 +1429,6 @@
           const dx = x2 - x1, dy = y2 - y1;
           const t  = Math.max(0, Math.min(1, ((px - x1) * dx + (py - y1) * dy) / (dx * dx + dy * dy)));
           return Math.sqrt((px - x1 - t * dx) ** 2 + (py - y1 - t * dy) ** 2);
-        }
-
-        drawCursor() {
-          // Comet trail
-          for (const pt of this.cursorTrail) {
-            const p    = pt.age / pt.maxAge;
-            const size = Math.max(0, 4 * (1 - p));
-            this.ctx.fillStyle = `rgba(0,238,255,${(1 - p) * 0.8})`;
-            this.ctx.beginPath(); this.ctx.arc(pt.x, pt.y, size, 0, Math.PI * 2); this.ctx.fill();
-          }
-
-          // Spinning dashed ring
-          const rot = this.time * 0.05;
-          this.ctx.strokeStyle = '#00d4ff';
-          this.ctx.lineWidth   = 1;
-          for (let i = 0; i < 8; i++) {
-            const a  = (i / 8) * Math.PI * 2 + rot;
-            const x1 = this.mouseX + Math.cos(a)       * 20;
-            const y1 = this.mouseY + Math.sin(a)       * 20;
-            const x2 = this.mouseX + Math.cos(a + 0.3) * 20;
-            const y2 = this.mouseY + Math.sin(a + 0.3) * 20;
-            this.ctx.beginPath(); this.ctx.moveTo(x1, y1); this.ctx.lineTo(x2, y2); this.ctx.stroke();
-          }
-
-          // 3 orbiting dots
-          for (let i = 0; i < 3; i++) {
-            const a = this.time * 0.08 + (i / 3) * Math.PI * 2;
-            this.ctx.fillStyle = '#00d4ff';
-            this.ctx.beginPath();
-            this.ctx.arc(this.mouseX + Math.cos(a) * 15, this.mouseY + Math.sin(a) * 15, 2, 0, Math.PI * 2);
-            this.ctx.fill();
-          }
-
-          // Centre dot
-          this.ctx.fillStyle = '#ffffff';
-          this.ctx.beginPath(); this.ctx.arc(this.mouseX, this.mouseY, 2, 0, Math.PI * 2); this.ctx.fill();
         }
 
         /* ── Main loop ── */
