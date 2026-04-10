@@ -237,10 +237,10 @@
     ctx.restore();
   }
 
-  function drawSpeechBubble(headX, headY, now) {
+  function drawSpeechBubble(headX, headY, direction, now) {
     if (!cat.meowText || now > cat.meowUntil) return;
 
-    const bubbleX = headX + 13;
+    const bubbleX = direction > 0 ? headX + 13 : headX - 59;
     const bubbleY = headY - 27;
     ctx.save();
     ctx.fillStyle = 'rgba(250, 252, 255, 0.94)';
@@ -251,9 +251,15 @@
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.moveTo(bubbleX + 4, bubbleY + 6);
-    ctx.lineTo(bubbleX - 1, bubbleY + 14);
-    ctx.lineTo(bubbleX + 10, bubbleY + 8);
+    if (direction > 0) {
+      ctx.moveTo(bubbleX + 4, bubbleY + 6);
+      ctx.lineTo(bubbleX - 1, bubbleY + 14);
+      ctx.lineTo(bubbleX + 10, bubbleY + 8);
+    } else {
+      ctx.moveTo(bubbleX + 41, bubbleY + 6);
+      ctx.lineTo(bubbleX + 47, bubbleY + 14);
+      ctx.lineTo(bubbleX + 35, bubbleY + 8);
+    }
     ctx.closePath();
     ctx.fill();
 
@@ -268,6 +274,7 @@
     const brightEyes = now < cat.reactionGlowUntil;
     const headX = cat.x + 8;
     const headY = y + (cat.state === 'lying' ? 9 : 3);
+    const screenHeadX = cat.direction > 0 ? cat.x + 8 : cat.x - 8;
     const sway = Math.sin(cat.frame * 0.04);
 
     ctx.save();
@@ -341,8 +348,8 @@
     ctx.fill();
 
     drawEyes(headX, headY, brightEyes);
-    drawSpeechBubble(headX, headY, now);
     ctx.restore();
+    drawSpeechBubble(screenHeadX, headY, cat.direction, now);
   }
 
   function render(now) {

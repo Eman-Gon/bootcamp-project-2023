@@ -1502,10 +1502,13 @@
           const skipBtn = document.getElementById('skipBtn');
           if (this.phaseT >= 8000) {
             this.unlockScroll();
-            this.showNavbar();
             this.hideSkipButton();
           } else if (skipBtn) {
             skipBtn.style.display = 'block';
+          }
+
+          if (this.phaseT >= 11100) {
+            this.showNavbar();
           }
         }
       }
