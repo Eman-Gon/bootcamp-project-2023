@@ -753,9 +753,12 @@
             }
           }
 
-          // Update cursor trail
-          for (let i = 0; i < this.cursorTrail.length; i++) {
+          // Update cursor trail — age every point and remove expired ones
+          for (let i = this.cursorTrail.length - 1; i >= 0; i--) {
             this.cursorTrail[i].age++;
+            if (this.cursorTrail[i].age >= this.cursorTrail[i].maxAge) {
+              this.cursorTrail.splice(i, 1);
+            }
           }
 
           // Update shockwaves
@@ -934,7 +937,7 @@
           for (let i = 0; i < trail.length; i++) {
             const point = trail[i];
             const progress = point.age / point.maxAge;
-            const size = 4 * (1 - progress);
+            const size = Math.max(0, 4 * (1 - progress));
 
             this.ctx.fillStyle = `rgba(0, 238, 255, ${(1 - progress) * 0.8})`;
             this.ctx.beginPath();
