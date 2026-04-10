@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emanuel Gonzalez — AI &amp; Software Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
       /* ── Reset ── */
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,19 +12,20 @@
       html { scroll-behavior: smooth; }
 
       body {
-        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-        background-color: #0f172a;
-        color: #e2e8f0;
-        line-height: 1.6;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        background-color: #0a1628;
+        color: #94a3b8;
+        line-height: 1.7;
+        font-size: 16px;
       }
 
-      a { color: #60a5fa; text-decoration: none; transition: color 0.2s; }
-      a:hover { color: #93c5fd; }
+      a { color: #00d4ff; text-decoration: none; transition: color 0.2s; }
+      a:hover { color: #00d4ff; opacity: 0.75; }
 
       /* ── Navbar ── */
       .navbar {
-        background-color: rgba(15, 23, 42, 0.97);
-        border-bottom: 1px solid #1e293b;
+        background-color: rgba(10, 22, 40, 0.97);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         padding: 0 2rem;
         display: flex;
         align-items: center;
@@ -32,27 +33,32 @@
         position: sticky;
         top: 0;
         z-index: 200;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(12px);
       }
       .navbar .logo a {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #f8fafc;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+        font-weight: 400;
+        color: #ffffff;
         padding: 1rem 0;
         display: block;
       }
-      .nav-list { list-style: none; display: flex; gap: 0.25rem; }
+      .nav-list { list-style: none; display: flex; gap: 0.15rem; }
       .nav-list a {
-        color: #94a3b8;
-        padding: 0.5rem 1rem;
+        font-family: "Inter", sans-serif;
+        color: #475569;
+        padding: 0.5rem 0.9rem;
         border-radius: 6px;
-        font-size: 0.9rem;
+        font-size: 0.875rem;
+        font-weight: 500;
         transition: color 0.2s, background-color 0.2s;
         display: block;
+        opacity: 1;
       }
       .nav-list a:hover, .nav-list a.active {
-        color: #f8fafc;
-        background-color: #1e293b;
+        color: #f1f5f9;
+        background-color: rgba(255, 255, 255, 0.06);
       }
 
       /* ── Hero Section ── */
@@ -186,187 +192,299 @@
 
       /* ── Section reveal animation ── */
       .content-section {
-        background-color: #0f172a;
+        background-color: #0a1628;
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.6s ease, transform 0.6s ease;
       }
-      .content-section.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      .content-section.visible { opacity: 1; transform: translateY(0); }
       .section-container {
         max-width: 900px;
         margin: 0 auto;
-        padding: 3.5rem 2rem;
+        padding: 120px 2rem 80px;
       }
-      .section-header { margin-bottom: 2.5rem; }
+
+      /* ── Section headings ── */
+      .section-label {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: #00d4ff;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .section-header { margin-bottom: 3.5rem; }
       .section-header h2 {
-        font-size: 1.9rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.4rem;
-      }
-      .section-header p { color: #94a3b8; font-size: 0.95rem; }
-
-      /* ── Sub-sections (Education, Experience, etc.) ── */
-      .subsection { margin-bottom: 2.5rem; }
-      .subsection h3 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-        padding-bottom: 0.4rem;
-        border-bottom: 2px solid #1e293b;
-      }
-
-      /* ── Cards ── */
-      .card {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        border-radius: 8px;
-        padding: 1.25rem;
-        margin-bottom: 1rem;
-        transition: border-color 0.2s;
-      }
-      .card:hover { border-color: #475569; }
-      .card h4 {
-        font-size: 1rem;
+        font-size: 32px;
         font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
+        color: #ffffff;
+        margin-bottom: 14px;
+        line-height: 1.2;
+        font-family: "Inter", sans-serif;
       }
-      .card .meta {
-        font-size: 0.85rem;
-        color: #64748b;
-        margin-bottom: 0.5rem;
+      .section-line {
+        width: 48px;
+        height: 1px;
+        background: #00d4ff;
+        margin-bottom: 1rem;
       }
-      .card p, .card li { font-size: 0.9rem; color: #cbd5e1; }
-      .card ul { list-style: disc; padding-left: 1.25rem; margin-top: 0.4rem; }
-      .card li { margin-bottom: 0.35rem; }
+      .section-links {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 0.25rem;
+      }
+      .section-links a {
+        color: #475569;
+        font-size: 14px;
+        transition: color 0.2s;
+        opacity: 1;
+      }
+      .section-links a:hover { color: #00d4ff; opacity: 1; }
+      .section-links .sep { color: #1e293b; }
 
+      /* ── Subsections (Education, Experience, etc.) ── */
+      .subsection { margin-bottom: 3rem; }
+      .subsection h3 {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        font-weight: 400;
+        color: #00d4ff;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+      }
+
+      /* ── Resume timeline cards ── */
+      #resume .card {
+        background: #0d1b2a;
+        border: 1px solid rgba(0, 212, 255, 0.08);
+        border-left: 2px solid #00d4ff;
+        border-radius: 12px;
+        padding: 28px 28px 28px 24px;
+        margin-left: 8px;
+        margin-bottom: 20px;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+      #resume .card:hover {
+        border-color: rgba(0, 212, 255, 0.35);
+        transform: translateY(-2px);
+      }
+      #resume .card h4 {
+        font-size: 17px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 6px;
+        font-family: "Inter", sans-serif;
+      }
+      #resume .card .meta {
+        font-size: 14px;
+        color: #64748b;
+        margin-bottom: 14px;
+        line-height: 1.5;
+      }
+      #resume .card p { font-size: 15px; color: #94a3b8; line-height: 1.8; }
+      #resume .card ul { list-style: none; padding-left: 0; margin-top: 8px; }
+      #resume .card li {
+        font-size: 15px;
+        color: #94a3b8;
+        line-height: 1.8;
+        margin-bottom: 8px;
+        padding-left: 18px;
+        position: relative;
+      }
+      #resume .card li::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: #1e3a5f;
+      }
+
+      /* ── Badge ── */
       .badge {
         display: inline-block;
-        background-color: rgba(96, 165, 250, 0.15);
-        color: #60a5fa;
-        font-size: 0.75rem;
-        font-weight: 600;
-        padding: 0.2rem 0.6rem;
-        border-radius: 999px;
-        margin-left: 0.5rem;
+        background: rgba(0, 212, 255, 0.08);
+        color: #00d4ff;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: 4px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 1px;
+        padding: 3px 10px;
+        margin-left: 8px;
         vertical-align: middle;
       }
 
       /* ── Skills grid ── */
-      .skills-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
+      .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
       .skill-category {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        border-radius: 8px;
-        padding: 1rem;
+        background: #0d1b2a;
+        border: 1px solid rgba(0, 212, 255, 0.08);
+        border-radius: 12px;
+        padding: 24px;
+        transition: border-color 0.2s ease;
       }
+      .skill-category:hover { border-color: rgba(0, 212, 255, 0.3); }
       .skill-category h4 {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #60a5fa;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        color: #00d4ff;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.5rem;
+        margin-bottom: 10px;
       }
-      .skill-category p { font-size: 0.9rem; color: #cbd5e1; }
+      .skill-category p { font-size: 14px; color: #94a3b8; line-height: 1.7; }
 
       /* ── Portfolio grid ── */
-      .project-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.25rem;
-      }
+      .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
       .project-card {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        border-radius: 8px;
-        padding: 1.5rem;
-        transition: border-color 0.2s, transform 0.2s;
+        background: #0d1b2a;
+        border: 1px solid rgba(0, 212, 255, 0.08);
+        border-radius: 12px;
+        padding: 28px;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+        display: flex;
+        flex-direction: column;
       }
-      .project-card:hover { border-color: #475569; transform: translateY(-2px); }
+      .project-card:hover {
+        border-color: rgba(0, 212, 255, 0.35);
+        transform: translateY(-2px);
+      }
+      .project-card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
       .project-card h4 {
-        font-size: 1.05rem;
+        font-size: 18px;
         font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
+        color: #ffffff;
+        line-height: 1.3;
+        font-family: "Inter", sans-serif;
       }
-      .project-card .meta { font-size: 0.8rem; color: #64748b; margin-bottom: 0.75rem; }
-      .project-card p { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem; }
-      .tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-      .tech-tag {
-        background-color: rgba(148, 163, 184, 0.1);
-        border: 1px solid #334155;
+      .project-card .badge { margin-left: 0; white-space: nowrap; flex-shrink: 0; }
+      .project-card .meta { font-size: 14px; color: #64748b; margin-bottom: 14px; }
+      .project-card > p {
+        font-size: 15px;
         color: #94a3b8;
-        font-size: 0.75rem;
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
+        line-height: 1.7;
+        margin-bottom: 16px;
+        flex-grow: 1;
       }
+      .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+      .tech-tag {
+        background: rgba(255, 255, 255, 0.04);
+        color: #94a3b8;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        font-size: 12px;
+        font-family: "Inter", sans-serif;
+        padding: 3px 10px;
+      }
+      .view-project {
+        font-size: 13px;
+        color: #00d4ff;
+        text-decoration: none;
+        margin-top: auto;
+        display: inline-block;
+        transition: opacity 0.2s;
+        opacity: 1;
+      }
+      .view-project:hover { opacity: 0.65; color: #00d4ff; }
 
       /* ── Blog ── */
       .blog-card {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        transition: border-color 0.2s;
+        background: #0d1b2a;
+        border: 1px solid rgba(0, 212, 255, 0.08);
+        border-radius: 12px;
+        padding: 28px;
+        margin-bottom: 20px;
+        transition: border-color 0.2s ease, transform 0.2s ease;
       }
-      .blog-card:hover { border-color: #475569; }
-      .blog-card h4 { font-size: 1.1rem; font-weight: 600; color: #f8fafc; margin-bottom: 0.25rem; }
-      .blog-card .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 0.75rem; }
-      .blog-card p { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 0.75rem; }
-      .blog-card .read-more { font-size: 0.9rem; font-weight: 600; }
-      .empty-state { text-align: center; padding: 4rem 2rem; color: #64748b; }
-      .empty-state h4 { font-size: 1.1rem; color: #94a3b8; margin-bottom: 0.5rem; }
+      .blog-card:hover {
+        border-color: rgba(0, 212, 255, 0.35);
+        transform: translateY(-2px);
+      }
+      .blog-card h4 { font-size: 18px; font-weight: 600; color: #ffffff; margin-bottom: 8px; font-family: "Inter", sans-serif; }
+      .blog-card .meta { font-size: 14px; color: #64748b; margin-bottom: 12px; }
+      .blog-card p { font-size: 15px; color: #94a3b8; line-height: 1.7; margin-bottom: 16px; }
+      .blog-card .read-more { font-size: 13px; color: #00d4ff; font-weight: 400; }
+      .blog-card .read-more:hover { opacity: 0.65; }
+      .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        border: 1px solid rgba(0, 212, 255, 0.06);
+        border-radius: 12px;
+      }
+      .empty-state h4 { font-size: 16px; color: #475569; margin-bottom: 8px; font-weight: 500; font-family: "Inter", sans-serif; }
+      .empty-state p { font-size: 15px; color: #334155; }
 
       /* ── Contact ── */
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+      .contact-body { max-width: 480px; margin: 0 auto; text-align: center; }
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        border-radius: 20px;
+        padding: 6px 16px;
+        font-size: 13px;
+        margin-bottom: 2.5rem;
       }
-      .contact-item {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        border-radius: 8px;
-        padding: 1.25rem;
-        transition: border-color 0.2s;
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        background: #22c55e;
+        border-radius: 50%;
+        flex-shrink: 0;
       }
-      .contact-item:hover { border-color: #475569; }
-      .contact-item h4 {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #60a5fa;
+      .contact-rows { text-align: left; }
+      .contact-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .contact-row:last-child { border-bottom: none; }
+      .contact-icon { width: 6px; height: 6px; background: #00d4ff; flex-shrink: 0; border-radius: 1px; }
+      .contact-label {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        color: #334155;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.4rem;
+        width: 80px;
+        flex-shrink: 0;
       }
-      .contact-item p { font-size: 0.95rem; color: #cbd5e1; }
+      .contact-value { color: #00d4ff; font-size: 15px; text-decoration: none; opacity: 1; }
+      .contact-value:hover { text-decoration: underline; color: #00d4ff; opacity: 1; }
+      .contact-value-plain { color: #94a3b8; font-size: 15px; }
 
       /* ── Footer ── */
       footer {
         text-align: center;
-        padding: 2rem;
-        border-top: 1px solid #1e293b;
-        color: #475569;
-        font-size: 0.85rem;
-        background: #0f172a;
+        padding: 2.5rem 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        color: #1e3a5f;
+        font-size: 14px;
+        background: #0a1628;
       }
 
       /* ── Responsive ── */
+      @media (max-width: 768px) {
+        .section-container { padding: 60px 1.5rem 50px; }
+        .skills-grid, .project-grid { grid-template-columns: 1fr; }
+      }
       @media (max-width: 640px) {
         .navbar { flex-direction: column; padding: 0.75rem 1rem; gap: 0.5rem; }
         .nav-list { gap: 0; flex-wrap: wrap; justify-content: center; }
-        .skills-grid, .project-grid, .contact-grid { grid-template-columns: 1fr; }
         .boot-divetext { font-size: 20px; letter-spacing: 6px; }
       }
     </style>
@@ -406,14 +524,16 @@
     <section id="resume" class="content-section">
       <div class="section-container">
         <div class="section-header">
-          <h2>Resume</h2>
-          <p>
+          <p class="section-label">// RESUME</p>
+          <h2>Emanuel Gonzalez</h2>
+          <div class="section-line"></div>
+          <div class="section-links">
             <a href="mailto:emanpiece@gmail.com">emanpiece@gmail.com</a>
-            &nbsp;|&nbsp;
+            <span class="sep">·</span>
             <a href="https://linkedin.com/in/eman279" target="_blank" rel="noopener">LinkedIn</a>
-            &nbsp;|&nbsp;
+            <span class="sep">·</span>
             <a href="https://github.com/Eman-Gon" target="_blank" rel="noopener">GitHub</a>
-          </p>
+          </div>
         </div>
 
         <div class="subsection">
@@ -514,73 +634,96 @@
     <section id="portfolio" class="content-section">
       <div class="section-container">
         <div class="section-header">
+          <p class="section-label">// PROJECTS</p>
           <h2>Portfolio</h2>
+          <div class="section-line"></div>
           <p>A selection of projects I've built at hackathons and through my work.</p>
         </div>
         <div class="project-grid">
           <div class="project-card">
-            <h4>DepScope <span class="badge">1st Place</span></h4>
+            <div class="project-card-top">
+              <h4>DepScope</h4>
+              <span class="badge">1st Place</span>
+            </div>
             <p class="meta">Continual Learning Hackathon &mdash; Feb. 2025</p>
+            <p>Dependency risk analysis platform with 3 parallel agents evaluating open-source packages for security vulnerabilities, maintenance health, and bus factor before installation.</p>
             <div class="tech-tags">
               <span class="tech-tag">Composio</span>
               <span class="tech-tag">SSE</span>
               <span class="tech-tag">Plivo</span>
               <span class="tech-tag">Multi-Agent</span>
             </div>
-            <p>Dependency risk analysis platform with 3 parallel agents evaluating open-source packages for security vulnerabilities, maintenance health, and bus factor before installation.</p>
+            <a href="#" class="view-project">View Project &rarr;</a>
           </div>
           <div class="project-card">
-            <h4>CareLink <span class="badge">2nd Place</span></h4>
+            <div class="project-card-top">
+              <h4>CareLink</h4>
+              <span class="badge">2nd Place</span>
+            </div>
             <p class="meta">Vapi AI Hackathon (600+ participants) &mdash; Feb. 2025</p>
+            <p>24/7 AI voice assistant for nursing homes, enabling families to call for real-time patient updates with automatic nurse escalation routing.</p>
             <div class="tech-tags">
               <span class="tech-tag">Vapi AI</span>
               <span class="tech-tag">Supabase</span>
               <span class="tech-tag">Voice AI</span>
             </div>
-            <p>24/7 AI voice assistant for nursing homes, enabling families to call for real-time patient updates with automatic nurse escalation routing.</p>
+            <a href="#" class="view-project">View Project &rarr;</a>
           </div>
           <div class="project-card">
-            <h4>SkepticScript <span class="badge">2nd Place</span></h4>
+            <div class="project-card-top">
+              <h4>SkepticScript</h4>
+              <span class="badge">2nd Place</span>
+            </div>
             <p class="meta">Claude Code Hack Day at AWS (25 teams) &mdash; Feb. 2025</p>
+            <p>Real-time fact-checker verifying spoken claims in under 3 seconds with source attribution. False claims highlighted red, true claims green.</p>
             <div class="tech-tags">
               <span class="tech-tag">ElevenLabs</span>
               <span class="tech-tag">Gemini</span>
               <span class="tech-tag">WebSockets</span>
               <span class="tech-tag">Supabase</span>
             </div>
-            <p>Real-time fact-checker verifying spoken claims in under 3 seconds with source attribution. False claims highlighted red, true claims green.</p>
+            <a href="#" class="view-project">View Project &rarr;</a>
           </div>
           <div class="project-card">
-            <h4>AI Compute Reallocator</h4>
+            <div class="project-card-top">
+              <h4>AI Compute Reallocator</h4>
+            </div>
             <p class="meta">MARA Hackathon &mdash; Jun. 2025</p>
+            <p>Multi-objective reinforcement learning agent reallocating 1 MW between Bitcoin mining and AI inference. Achieved +$26k profit, +25% efficiency, and 70% less idle compute.</p>
             <div class="tech-tags">
               <span class="tech-tag">PyTorch</span>
               <span class="tech-tag">DQN</span>
               <span class="tech-tag">ERCOT API</span>
             </div>
-            <p>Multi-objective reinforcement learning agent reallocating 1 MW between Bitcoin mining and AI inference. Achieved +$26k profit, +25% efficiency, and 70% less idle compute.</p>
+            <a href="#" class="view-project">View Project &rarr;</a>
           </div>
           <div class="project-card">
-            <h4>Creek Lands Conservation</h4>
+            <div class="project-card-top">
+              <h4>Creek Lands Conservation</h4>
+            </div>
             <p class="meta">Hack4Impact &mdash; Feb. 2024 &ndash; May 2025</p>
+            <p>Full-stack event management system with Stripe payments, role-based auth, and bilingual PDF waiver workflow generating 200+ documents.</p>
             <div class="tech-tags">
               <span class="tech-tag">MongoDB</span>
               <span class="tech-tag">Stripe</span>
               <span class="tech-tag">Clerk</span>
               <span class="tech-tag">AWS S3</span>
             </div>
-            <p>Full-stack event management system with Stripe payments, role-based auth, and bilingual PDF waiver workflow generating 200+ documents.</p>
+            <a href="#" class="view-project">View Project &rarr;</a>
           </div>
           <div class="project-card">
-            <h4>Invoice Automation</h4>
+            <div class="project-card-top">
+              <h4>Invoice Automation</h4>
+            </div>
             <p class="meta">Cal Poly DxHub &mdash; Jul. 2025</p>
+            <p>AI-powered invoice processing reducing processing time by 99% with 95%+ accuracy. Multi-tenant architecture with semantic search via Amazon Titan embeddings.</p>
             <div class="tech-tags">
               <span class="tech-tag">FastAPI</span>
               <span class="tech-tag">React</span>
               <span class="tech-tag">AWS Bedrock</span>
               <span class="tech-tag">Claude 3.5</span>
             </div>
-            <p>AI-powered invoice processing reducing processing time by 99% with 95%+ accuracy. Multi-tenant architecture with semantic search via Amazon Titan embeddings.</p>
+            <a href="#" class="view-project">View Project &rarr;</a>
           </div>
         </div>
       </div>
@@ -590,7 +733,9 @@
     <section id="blog" class="content-section">
       <div class="section-container">
         <div class="section-header">
+          <p class="section-label">// WRITING</p>
           <h2>Blog</h2>
+          <div class="section-line"></div>
           <p>Thoughts on AI, software engineering, and hackathon adventures.</p>
         </div>
         <div id="blog-posts"></div>
@@ -605,25 +750,36 @@
     <section id="contact" class="content-section">
       <div class="section-container">
         <div class="section-header">
-          <h2>Contact</h2>
-          <p>Have a question, opportunity, or just want to connect? Reach out through any of the channels below.</p>
+          <p class="section-label">// CONTACT</p>
+          <h2>Get in Touch</h2>
+          <div class="section-line"></div>
         </div>
-        <div class="contact-grid">
-          <div class="contact-item">
-            <h4>Email</h4>
-            <p><a href="mailto:emanpiece@gmail.com">emanpiece@gmail.com</a></p>
+        <div class="contact-body">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            Open to new opportunities
           </div>
-          <div class="contact-item">
-            <h4>LinkedIn</h4>
-            <p><a href="https://linkedin.com/in/eman279" target="_blank" rel="noopener">linkedin.com/in/eman279</a></p>
-          </div>
-          <div class="contact-item">
-            <h4>GitHub</h4>
-            <p><a href="https://github.com/Eman-Gon" target="_blank" rel="noopener">github.com/Eman-Gon</a></p>
-          </div>
-          <div class="contact-item">
-            <h4>Location</h4>
-            <p>San Francisco, CA</p>
+          <div class="contact-rows">
+            <div class="contact-row">
+              <span class="contact-icon"></span>
+              <span class="contact-label">Email</span>
+              <a href="mailto:emanpiece@gmail.com" class="contact-value">emanpiece@gmail.com</a>
+            </div>
+            <div class="contact-row">
+              <span class="contact-icon"></span>
+              <span class="contact-label">LinkedIn</span>
+              <a href="https://linkedin.com/in/eman279" target="_blank" rel="noopener" class="contact-value">linkedin.com/in/eman279</a>
+            </div>
+            <div class="contact-row">
+              <span class="contact-icon"></span>
+              <span class="contact-label">GitHub</span>
+              <a href="https://github.com/Eman-Gon" target="_blank" rel="noopener" class="contact-value">github.com/Eman-Gon</a>
+            </div>
+            <div class="contact-row">
+              <span class="contact-icon"></span>
+              <span class="contact-label">Location</span>
+              <span class="contact-value-plain">San Francisco, CA</span>
+            </div>
           </div>
         </div>
       </div>
